@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="变量赋值 变量的定义 字母，数字，下划线 不以数字开头   变量的赋值-变量替换 shell的脚本不区分类型 变量名&#x3D;变量值 a&#x3D;133   使用let为变量赋值 let a&#x3D;10+20   将命令赋值给变量 l&#x3D;ls   将命令结果赋值给变量，使用$()或者&#96;&#96; letc&#x3D;$(ls -l &#x2F;etc)   变量值有空格等特殊字符可以包含在””或’’中   变量的引用 ${变量名}称作对变量的引用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux回顾(第六天)">
+<meta property="og:url" content="https://www.geekboys.cn/2021/01/18/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E5%85%AD%E5%A4%A9/index.html">
+<meta property="og:site_name" content="莫邪居士的博客">
+<meta property="og:description" content="变量赋值 变量的定义 字母，数字，下划线 不以数字开头   变量的赋值-变量替换 shell的脚本不区分类型 变量名&#x3D;变量值 a&#x3D;133   使用let为变量赋值 let a&#x3D;10+20   将命令赋值给变量 l&#x3D;ls   将命令结果赋值给变量，使用$()或者&#96;&#96; letc&#x3D;$(ls -l &#x2F;etc)   变量值有空格等特殊字符可以包含在””或’’中   变量的引用 ${变量名}称作对变量的引用">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-01-18T08:30:00.000Z">
+<meta property="article:modified_time" content="2021-01-22T03:13:20.429Z">
+<meta property="article:author" content="geekboys">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.geekboys.cn/2021/01/18/Linux回顾-第六天/"/>
+
+
+
+
+
+  <title>Linux回顾(第六天) | 莫邪居士的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/geekboyss" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">莫邪居士的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">莫邪居士的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/01/18/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E5%85%AD%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/aut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫邪居士的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux回顾(第六天)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-18T16:30:00+08:00">
+                2021-01-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-22T11:13:20+08:00">
+                2021-01-22
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="变量赋值"><a href="#变量赋值" class="headerlink" title="变量赋值"></a>变量赋值</h1><ul>
+<li><h4 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h4><ul>
+<li>字母，数字，下划线</li>
+<li>不以数字开头</li>
+</ul>
+</li>
+<li><h4 id="变量的赋值-变量替换"><a href="#变量的赋值-变量替换" class="headerlink" title="变量的赋值-变量替换"></a>变量的赋值-变量替换</h4><ul>
+<li>shell的脚本不区分类型</li>
+<li>变量名=变量值<ul>
+<li>a=133</li>
+</ul>
+</li>
+<li>使用let为变量赋值<ul>
+<li>let a=10+20</li>
+</ul>
+</li>
+<li>将命令赋值给变量<ul>
+<li>l=ls</li>
+</ul>
+</li>
+<li>将命令结果赋值给变量，使用$()或者``<ul>
+<li>letc=$(ls -l /etc)</li>
+</ul>
+</li>
+<li>变量值有空格等特殊字符可以包含在””或’’中</li>
+</ul>
+</li>
+<li><h4 id="变量的引用"><a href="#变量的引用" class="headerlink" title="变量的引用"></a>变量的引用</h4><ul>
+<li>${变量名}称作对变量的引用</li>
+<li>echo ${变量名} 查看变量的值</li>
+<li>${变量名} 在部分情况下可以省略为 $变量名</li>
+</ul>
+</li>
+<li><h4 id="变量的作用范围"><a href="#变量的作用范围" class="headerlink" title="变量的作用范围"></a>变量的作用范围</h4><ul>
+<li>默认只在当前的shell，其子进程和父进程和平行的进程都不会生效</li>
+<li>脚本中的变量默认在当前的bash也不会生效</li>
+<li>如果想让脚本的变量也可以使用其他的进程使用使用. 和source的方式</li>
+<li>还可以通过export来导出变量，使得子进程可以访问父进程的变量</li>
+<li>删除变量：unset 变量名</li>
+</ul>
+</li>
+<li><h4 id="系统环境变量"><a href="#系统环境变量" class="headerlink" title="系统环境变量"></a>系统环境变量</h4><ul>
+<li><p>环境配置：每个Shell打开都可以获得到的变量</p>
+<ul>
+<li>set和env命令<ul>
+<li>可以查看默认的环境变量</li>
+<li>set可以查看更多变量</li>
+</ul>
+</li>
+<li>$? $$ $0     //预定义变量<ul>
+<li>$? :可以用来确认上一次命令是否执行成功，返回为0即为成功</li>
+<li>$$:显示当前进程的PID</li>
+<li>$0：显示当前进程的名称</li>
+</ul>
+</li>
+<li>$PATH<ul>
+<li>使用echo $PATH来来看当前命令的搜索路径</li>
+<li>PATH=$PATH:/root    //添加了/root为搜索路径</li>
+<li>环境变量只对当前的shell的任意位置生效，子进程也可以生效</li>
+<li>而当我们使用新的终端，则不会生效</li>
+</ul>
+</li>
+<li>$PS1<ul>
+<li>可以使得终端显示个性化信息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>位置变量</p>
+<ul>
+<li><p>$1 $2 $n</p>
+</li>
+<li><pre><code class="shell">#!/bin/bash
+# $1 $2...$&#123;10&#125;
+pos1=$1
+pos2=$2
+
+echo pos1
+echo pos3
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 当我们在执行脚本传递参数的时候，会传递到<span class="variable">$n</span>这个变量中</span><br><span class="line"></span><br><span class="line">- ```shell</span><br><span class="line">  <span class="comment">#!/bin/bash</span></span><br><span class="line">  <span class="comment"># $1 $2...$&#123;10&#125;</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$1</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$2</span></span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><p>事实上上面的两段代码的作用效果时相同的，如果我们给上面的脚本加上两个参数，便会显示这两个参数</p>
+</li>
+<li><p>当我们读入的参数如果时空值可能会出现一些错误，我们可以用下面的写法</p>
+</li>
+<li><pre><code class="shell">#!/bin/bash
+echo $1
+echo $&#123;2&#125;_
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">- 代表如果<span class="variable">$2</span>时空值读入_</span><br><span class="line">  </span><br><span class="line">- 这样的小技巧 显然又会带来另外的一个问题:如果我们的参数不是空值不久多出来了_吗因此我们可以来使用下下面的写法</span><br><span class="line">  </span><br><span class="line">- ```shell</span><br><span class="line">  <span class="comment">#!/bin/bash</span></span><br><span class="line">  pos1=<span class="variable">$1</span></span><br><span class="line">  pos2=<span class="variable">$&#123;2-_&#125;</span></span><br><span class="line">  </span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$pos1</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="variable">$pos2</span></span><br></pre></td></tr></table></figure>
+
+这样在有参数的时候会去掉 _而没有参数的时候则会为 _</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="环境变量配置文件"><a href="#环境变量配置文件" class="headerlink" title="环境变量配置文件"></a>环境变量配置文件</h4><ul>
+<li>/etc/profile    //所有用户的通用配置文件</li>
+<li>/etc/profile.d/</li>
+<li>~/.bash_profile   //用户特有</li>
+<li>~/.bashrc   //用户特有</li>
+<li>/etc/bashrc   //所有的用户通用的配置文件<ul>
+<li>当我们使用su - root四个脚本都会被执行</li>
+<li>如果只使用su root则只会执行.bashrc和/etc/bashrc</li>
+</ul>
+</li>
+<li>如果我们想要添加环境变量，在以上的四个文件均可<ul>
+<li>export PATH=$PATH:new/path</li>
+<li>为了保证子进程可以访问到环境变量我们需要在前面加上export</li>
+<li>当我们将新的环境变量写入到配置文件中并不会立即的生效</li>
+<li>可以通过exit来重新打开bash也可以使用source /etc/bashrc</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><ul>
+<li><h4 id="定义数组"><a href="#定义数组" class="headerlink" title="定义数组"></a>定义数组</h4><ul>
+<li><code>IPTS=( 192.168.1 192.168.2 192.168.3)</code></li>
+</ul>
+</li>
+<li><h4 id="显示数组中的所有元素"><a href="#显示数组中的所有元素" class="headerlink" title="显示数组中的所有元素"></a>显示数组中的所有元素</h4><ul>
+<li><code>echo $&#123;IPTS[@]&#125;</code></li>
+</ul>
+</li>
+<li><h4 id="显示数组元素的个数"><a href="#显示数组元素的个数" class="headerlink" title="显示数组元素的个数"></a>显示数组元素的个数</h4><ul>
+<li><code>echo $&#123;#IPTS[@]&#125;</code></li>
+</ul>
+</li>
+<li><h4 id="显示数组的第一个元素"><a href="#显示数组的第一个元素" class="headerlink" title="显示数组的第一个元素"></a>显示数组的第一个元素</h4><ul>
+<li><code>echo $&#123;IPTS[0]&#125;</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="转义与引用"><a href="#转义与引用" class="headerlink" title="转义与引用"></a>转义与引用</h1><ul>
+<li><h4 id="特殊字符：一个字符不仅有字面意义，还有元意"><a href="#特殊字符：一个字符不仅有字面意义，还有元意" class="headerlink" title="特殊字符：一个字符不仅有字面意义，还有元意"></a>特殊字符：一个字符不仅有字面意义，还有元意</h4><h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><ul>
+<li>;分号<ul>
+<li>连接两个命令，或者两个脚本</li>
+</ul>
+</li>
+</ul>
+<h4 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h4><ul>
+<li>\转义符号<ul>
+<li><code>\n \r \t</code> 单个字母的转义</li>
+<li> <code>\ $  \ &quot;   \\ \ </code> 单个非字母的转义 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><ul>
+<li><p>“”和’’</p>
+</li>
+<li><p>使用单引号 就会原样输出</p>
+</li>
+<li><p>而如果我们使用双引号就可以对变量进行解释</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><ul>
+<li><h4 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h4><ul>
+<li>= 可以用于算数赋值和字符串赋值</li>
+<li>使用unset取消为变量的赋值</li>
+<li>=除了作为赋值运算符还可以作为测试操作符</li>
+</ul>
+</li>
+<li><h4 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h4><ul>
+<li><p>基本运算符</p>
+<p><code>+ - * / ** %</code></p>
+</li>
+<li><p>使用expr进行运算</p>
+<p><code>expr 4+5</code></p>
+</li>
+</ul>
+</li>
+<li><h4 id="数字常量"><a href="#数字常量" class="headerlink" title="数字常量"></a>数字常量</h4><ul>
+<li>let  “变量名=变量值”</li>
+<li>变量值使用0开头为八进制</li>
+<li>变量值使用0x开头为十六进制</li>
+</ul>
+</li>
+<li><h4 id="双圆常量"><a href="#双圆常量" class="headerlink" title="双圆常量"></a>双圆常量</h4><ul>
+<li>双圆括号时let命令的简化<ul>
+<li><code>(( a = 10 ))</code></li>
+<li><code>(( a++ ))</code></li>
+<li><code>echo $((10 + 20))</code></li>
+<li><code>num1 = expr 4+ 5 </code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="特殊符号大全"><a href="#特殊符号大全" class="headerlink" title="特殊符号大全"></a>特殊符号大全</h1><ul>
+<li><h4 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h4><ul>
+<li>’完全引用</li>
+<li>“不完全引用：会对变量进行解释</li>
+<li>·执行命令</li>
+</ul>
+</li>
+<li><h4 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h4><ul>
+<li>() (()) $()圆括号<ul>
+<li>单独使用圆括号 会产生一个子shell （xyz=123）</li>
+<li>数组的初始化ips=(ip1 ip2 ip3)</li>
+<li>两个圆括号是可以进行一个运算</li>
+<li>还可以使用$(命令) ，可以将命令的结果赋值给变量</li>
+</ul>
+</li>
+<li>[]  [[]]方括号<ul>
+<li>单独使用方括号是测试(test)或数组元素功能<ul>
+<li>[ 5 -gt 4 ] 用来比较大小如果大于 则返回0的值，可以使用echo $?来进行查看</li>
+</ul>
+</li>
+<li>两个方括号表示测试表达式<ul>
+<li>[[ 5 &gt; 4 ]]两个方括号可以直接使用&lt; &gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&lt;&gt;尖括号 重定向符号<ul>
+<li>ls &gt; a.txt</li>
+<li>2&gt; 可以记录一些错误的信息</li>
+</ul>
+</li>
+<li>{}花括号<ul>
+<li>输出范围 echo{0..9}</li>
+<li>文件复制cp /etc/passwd{,.bak} = cp -v /etc/passwd /etc/passwd.bak</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="运算和逻辑符号"><a href="#运算和逻辑符号" class="headerlink" title="运算和逻辑符号"></a>运算和逻辑符号</h4><ul>
+<li><code>+ - * / %</code> 算术运算符</li>
+<li><code>&gt; &lt; =</code> 比较运算符</li>
+<li><code>&amp;&amp; || !</code>逻辑运算符号</li>
+</ul>
+</li>
+<li><h4 id="转义符号"><a href="#转义符号" class="headerlink" title="转义符号"></a>转义符号</h4></li>
+<li><h4 id="其他符号"><a href="#其他符号" class="headerlink" title="其他符号"></a>其他符号</h4><ul>
+<li>#注释符号</li>
+<li>;命令分隔符<ul>
+<li>case语句的分隔符需要转义;;</li>
+</ul>
+</li>
+<li>:空指令</li>
+<li>.和source命令相同</li>
+<li>~家目录</li>
+<li>,分隔符</li>
+<li>*通配符</li>
+<li>？条件测试 或 通配符</li>
+<li>$取值符号</li>
+<li>|管道符号</li>
+<li>&amp;后台运行符号</li>
+<li>_空格</li>
+</ul>
+</li>
+</ul>
+<h1 id="test比较-测试与判断"><a href="#test比较-测试与判断" class="headerlink" title="test比较(测试与判断)"></a>test比较(测试与判断)</h1><ul>
+<li><h4 id="退出与退出状态"><a href="#退出与退出状态" class="headerlink" title="退出与退出状态"></a>退出与退出状态</h4><ul>
+<li>测试与判断<ul>
+<li>exit</li>
+<li>exit 10返回10给shell，返回非0位不正常退出</li>
+<li>$?判断当前的shell前一个进程是否正常退出</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="测试命令-test"><a href="#测试命令-test" class="headerlink" title="测试命令 test"></a>测试命令 test</h4><ul>
+<li>文件测试</li>
+<li>整数比较测试</li>
+<li>[ 5 -gt 7 ]</li>
+<li>字符串测试<ul>
+<li>[ “abc” = “abc” ]</li>
+<li>字符串的比较是区分大小写的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>test可以简化为[]符号</p>
+</li>
+<li><p>[[]]此类方法位扩展写法支持&amp;&amp; || &lt; &gt;</p>
+</li>
+<li><h4 id="使用if-then语句"><a href="#使用if-then语句" class="headerlink" title="使用if-then语句"></a>使用if-then语句</h4><ul>
+<li>if-then语句的基本用法<ul>
+<li>if [ 测试条件成立 ] 或者命令返回值是否为0</li>
+<li>then 执行相应的命令</li>
+<li>fi 结束</li>
+<li>例如我们可以使用if [ $UID = 0 ]或[ $USER = root ]来判断当前用户是否是root</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="使用if-then-else语句"><a href="#使用if-then-else语句" class="headerlink" title="使用if-then-else语句"></a>使用if-then-else语句</h4><ul>
+<li><p>if [ 测试条件成立 ]</p>
+</li>
+<li><p>then 执行相应命令</p>
+</li>
+<li><p>else 测试条件不成立，执行相应命令</p>
+</li>
+<li><p>fi 结束</p>
+</li>
+<li><pre><code class="shell">#!/bin/bash
+if [ $USER = root ] ;then
+    echo &quot; user root &quot;
+else
+    echo &quot; other user &quot;
+fi
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">我们还有另外的一种使用方法</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line"><span class="keyword">if</span> [ 测试条件成立 ]</span><br><span class="line"><span class="keyword">then</span> 执行相应命令</span><br><span class="line"><span class="keyword">elif</span> [ 测试条件成立 ]</span><br><span class="line"><span class="keyword">then</span> 执行相应命令</span><br><span class="line"><span class="keyword">else</span> 测试条件不成立，执行相应命令</span><br><span class="line"><span class="keyword">fi</span> 结束</span><br></pre></td></tr></table></figure>
+
+下面是一些举例
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">root geek other</span></span><br><span class="line">if [ $USER = root ] ; then</span><br><span class="line">	echo &quot;root&quot;</span><br><span class="line">elif [ $USER = geek ] ; then</span><br><span class="line">	echo &quot;geek&quot;</span><br><span class="line">else</span><br><span class="line">	echo &quot;other user&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="嵌套if的使用"><a href="#嵌套if的使用" class="headerlink" title="嵌套if的使用"></a>嵌套if的使用</h4></li>
+<li><p>适用于判断两个条件</p>
+</li>
+<li><pre><code class="shell">#if 条件测试中可以再    嵌套if条件测试
+if [ 测试条件成立 ]
+then 执行相应命令
+    if [ 测试条件成立 ]
+    then 执行相应的命令
+    fi 结束
+fi 结束
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">- 下面进行一个简单的举列</span><br><span class="line"></span><br><span class="line">- ```shell</span><br><span class="line">  <span class="comment">#!/bin/bash</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">#demo if then if then fi fi</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$UID</span> = <span class="number">0</span> ] ; then</span><br><span class="line">  	echo <span class="string">&quot;please run&quot;</span></span><br><span class="line">  	<span class="keyword">if</span> [ -x <span class="regexp">/tmp/</span><span class="number">10</span>.sh ] ; then</span><br><span class="line">  		<span class="regexp">/tmp/</span><span class="number">10</span>.sh</span><br><span class="line">  	fi</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  	echo <span class="string">&quot;switch user root&quot;</span></span><br><span class="line">  fi</span><br></pre></td></tr></table></figure>
+
+
+</code></pre>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持是我最大的动力！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/w.png" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/z.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    geekboys
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.geekboys.cn/2021/01/18/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E5%85%AD%E5%A4%A9/" title="Linux回顾(第六天)">https://www.geekboys.cn/2021/01/18/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E5%85%AD%E5%A4%A9/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/15/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%94%E5%A4%A9/" rel="next" title="Linux回顾(第五天)">
+                <i class="fa fa-chevron-left"></i> Linux回顾(第五天)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/22/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%B8%83%E5%A4%A9/" rel="prev" title="Linux回顾(第七天)">
+                Linux回顾(第七天) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/aut.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/geekboyss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="nav-number">1.</span> <span class="nav-text">变量赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">变量的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E8%B5%8B%E5%80%BC-%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">变量的赋值-变量替换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%BC%95%E7%94%A8"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">变量的引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%9C%E7%94%A8%E8%8C%83%E5%9B%B4"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">变量的作用范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">系统环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">环境变量配置文件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-number">2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">定义数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">显示数组中的所有元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">显示数组元素的个数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E6%95%B0%E7%BB%84%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-number">2.0.0.4.</span> <span class="nav-text">显示数组的第一个元素</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">转义与引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%8D%E4%BB%85%E6%9C%89%E5%AD%97%E9%9D%A2%E6%84%8F%E4%B9%89%EF%BC%8C%E8%BF%98%E6%9C%89%E5%85%83%E6%84%8F"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">特殊字符：一个字符不仅有字面意义，还有元意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">转义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">引用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%95%B0%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">算数运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E5%B8%B8%E9%87%8F"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">数字常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%9C%86%E5%B8%B8%E9%87%8F"><span class="nav-number">4.0.0.4.</span> <span class="nav-text">双圆常量</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7%E5%A4%A7%E5%85%A8"><span class="nav-number">5.</span> <span class="nav-text">特殊符号大全</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%8F%B7"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">引号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%AC%E5%8F%B7"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">括号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%92%8C%E9%80%BB%E8%BE%91%E7%AC%A6%E5%8F%B7"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">运算和逻辑符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89%E7%AC%A6%E5%8F%B7"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">转义符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%AC%A6%E5%8F%B7"><span class="nav-number">5.0.0.5.</span> <span class="nav-text">其他符号</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#test%E6%AF%94%E8%BE%83-%E6%B5%8B%E8%AF%95%E4%B8%8E%E5%88%A4%E6%96%AD"><span class="nav-number">6.</span> <span class="nav-text">test比较(测试与判断)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E4%B8%8E%E9%80%80%E5%87%BA%E7%8A%B6%E6%80%81"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">退出与退出状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E5%91%BD%E4%BB%A4-test"><span class="nav-number">6.0.0.2.</span> <span class="nav-text">测试命令 test</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8if-then%E8%AF%AD%E5%8F%A5"><span class="nav-number">6.0.0.3.</span> <span class="nav-text">使用if-then语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8if-then-else%E8%AF%AD%E5%8F%A5"><span class="nav-number">6.0.0.4.</span> <span class="nav-text">使用if-then-else语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97if%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">6.0.0.5.</span> <span class="nav-text">嵌套if的使用</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekboys</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

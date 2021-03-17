@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="用户与权限管理常用的命令 useradd 新建用户 userdel 删除用户 passwd 修改用户密码  usermod 修改用户的属性 chage 修改用户属性 创建用户useradd geek    &#x2F;&#x2F;这样我们就创建了一个名叫geek的用户 我们要如何知道是否创建成功了呢 ，这里我们就需要使用 id命令了 id geek      &#x2F;&#x2F;便会显示用户geek的信息如果输入的用户不存在 id就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux回顾(第二天)">
+<meta property="og:url" content="https://www.geekboys.cn/2021/01/04/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%8C%E5%A4%A9/index.html">
+<meta property="og:site_name" content="莫邪居士的博客">
+<meta property="og:description" content="用户与权限管理常用的命令 useradd 新建用户 userdel 删除用户 passwd 修改用户密码  usermod 修改用户的属性 chage 修改用户属性 创建用户useradd geek    &#x2F;&#x2F;这样我们就创建了一个名叫geek的用户 我们要如何知道是否创建成功了呢 ，这里我们就需要使用 id命令了 id geek      &#x2F;&#x2F;便会显示用户geek的信息如果输入的用户不存在 id就">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-01-04T04:55:42.000Z">
+<meta property="article:modified_time" content="2021-01-05T12:12:24.913Z">
+<meta property="article:author" content="geekboys">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.geekboys.cn/2021/01/04/Linux回顾-第二天/"/>
+
+
+
+
+
+  <title>Linux回顾(第二天) | 莫邪居士的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/geekboyss" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">莫邪居士的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">莫邪居士的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/01/04/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%8C%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/aut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫邪居士的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux回顾(第二天)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-04T12:55:42+08:00">
+                2021-01-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-05T20:12:24+08:00">
+                2021-01-05
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="用户与权限管理"><a href="#用户与权限管理" class="headerlink" title="用户与权限管理"></a>用户与权限管理</h2><p>常用的命令</p>
+<p>useradd 新建用户</p>
+<p>userdel 删除用户</p>
+<p>passwd 修改用户密码 </p>
+<p>usermod 修改用户的属性</p>
+<p>chage 修改用户属性</p>
+<h4 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h4><p>useradd geek    //这样我们就创建了一个名叫geek的用户</p>
+<p>我们要如何知道是否创建成功了呢 ，这里我们就需要使用 id命令了</p>
+<p>id geek      //便会显示用户geek的信息如果输入的用户不存在 id就会提示 no such user</p>
+<p>当我们创建完成一个用户之后，这个用户也和root一样 ， 有一个自己的家目录，但是并不在根目录下，而是在/home路径下。当我们创建用户完成之后也会被记录到/etc/passed文件内。在etc/shadow文件中也会添加相应的用户内容，在shadow中是关于密码相关的文件。</p>
+<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><p>passwd geek</p>
+<p>如果是修改自身的密码 直接输入 passwd</p>
+<h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><p>userdel geek</p>
+<p>加上-r选项可以删除家目录，将用户彻底的删除掉</p>
+<h4 id="属性修改"><a href="#属性修改" class="headerlink" title="属性修改"></a>属性修改</h4><p>usermod -d 路径 geek         //可以修改用户geek的家目录</p>
+<h4 id="组管理命令"><a href="#组管理命令" class="headerlink" title="组管理命令"></a>组管理命令</h4><p>groupadd    新建用户组</p>
+<p>groupdel    删除用户组</p>
+<p>示例</p>
+<p>groupadd g1        //创建一个名为g1的用户组</p>
+<p>usermod -g g1 geek         //进用户geek添加到用户组g1</p>
+<p>我们还可以在新建用户的时候直接将用户添加到对应的组</p>
+<p>useradd -g g1 geek</p>
+<h4 id="用户的切换"><a href="#用户的切换" class="headerlink" title="用户的切换"></a>用户的切换</h4><p>su - geek        //这样就切换到geek用户</p>
+<p>如果不加-号 ，为不完全切换 我们还会在root用户的家目录下，需要手动切换，会比较的麻烦</p>
+<p>如果从普通用户切换到root是需要输入密码的</p>
+<h1 id="su和sudo"><a href="#su和sudo" class="headerlink" title="su和sudo"></a>su和sudo</h1><p>su 切换用户</p>
+<p>sudo 以其他用户的身份来执行命令</p>
+<h4 id="关于visudo"><a href="#关于visudo" class="headerlink" title="关于visudo"></a>关于visudo</h4><p>当我们想让普通的用户使用超级用户的命令时，我们可以使用visudo命令，在末尾为用户或者用户组添加相应的命令</p>
+<p>例如    geek ALL=/sbin/shutdown -c</p>
+<p>这样添加之后geek用户就可以使用sudo 来执行shutdown -c命令</p>
+<h1 id="用户和用户组配置文件"><a href="#用户和用户组配置文件" class="headerlink" title="用户和用户组配置文件"></a>用户和用户组配置文件</h1><h4 id="etc-passwd中7个字段"><a href="#etc-passwd中7个字段" class="headerlink" title="etc/passwd中7个字段"></a>etc/passwd中7个字段</h4><p>geek​ : x:1000:1000::/home/geek:/bin/bash</p>
+<p>用户名：x：uid：gid：注释：家目录路径：默认命令解释器</p>
+<p>其中第二段x的意思是需要密码进行登录，如果将最后一段改为：/sbin/nologin之后此账户将不能登录</p>
+<p>我们可以在这里添加内容来进行手动创建用户</p>
+<h4 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="etc/shadow"></a>etc/shadow</h4><p>这个文件是用来保存用户名和用户密码</p>
+<p>第一个字段是用户名，之后是加密后的密码</p>
+<h4 id="etc-group"><a href="#etc-group" class="headerlink" title="etc/group"></a>etc/group</h4><p>这个文件中包括四个字段</p>
+<p>geek：x：1000：其他组设置</p>
+<h1 id="文件权限的表示方法"><a href="#文件权限的表示方法" class="headerlink" title="文件权限的表示方法"></a>文件权限的表示方法</h1><p>当我们使用ls -l时，便会以长格式来显示文件或者目录</p>
+<p>-rw——- root root </p>
+<p>第一个字符表示文件的类型，如果为d则为一个文件夹，-则为一个普通文件，b为块特殊文件</p>
+<p>之后的九个字符每三个为一组</p>
+<p>前三个：表示所属用户对这个文件的权限</p>
+<p>中三个：表示所属的组对这个文件的权限</p>
+<p>后三个：除了当前用户和用户组之外其他人对这个文件的权限</p>
+<h5 id="字符权限的表示方法"><a href="#字符权限的表示方法" class="headerlink" title="字符权限的表示方法"></a>字符权限的表示方法</h5><ul>
+<li>r 读</li>
+<li>w写</li>
+<li>x执行</li>
+</ul>
+<p>数字权限的表示方法</p>
+<ul>
+<li>r = 4</li>
+<li>w = 2</li>
+<li>x = 1</li>
+</ul>
+<h5 id="目录权限表示方法"><a href="#目录权限表示方法" class="headerlink" title="目录权限表示方法"></a>目录权限表示方法</h5><ul>
+<li>x    进入目录</li>
+<li>rx   显示目录内的文件名</li>
+<li>wx  修改目录内的文件名</li>
+</ul>
+<h1 id="文件权限的修改"><a href="#文件权限的修改" class="headerlink" title="文件权限的修改"></a>文件权限的修改</h1><p>chmod    修改文件，目录的权限</p>
+<ul>
+<li>chmod u+x </li>
+<li>chmos 775</li>
+</ul>
+<p>chown 更改属主 属组</p>
+<p>chgrp 单独更改属组不常用</p>
+<p>chgrp group1 /geek</p>
+<p>示例</p>
+<p>mkdir /geek        //再根目录下建立了一个叫geek的文件夹</p>
+<p>ls -ld /geek    //单独查看geek文件夹的权限</p>
+<p>chown geek /geek 修改文件夹的属主为geek</p>
+<p>chown :group1 /geek 修改文件夹的属组为group1</p>
+<p>小技巧：ctrl + r可以搜索以前使用过的命令</p>
+<h4 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h4><p>u：属主    g：属组    o：其他        a：所有</p>
+<p>用法示例</p>
+<p>chmod u+x 1.txt        //为1.txt文件属主添加x权限</p>
+<p>如果不指定属主或者属组，默认a所有 进行添加权限</p>
+<p>设置权限</p>
+<p>chmod u=w 1.txt</p>
+<p>也可以用上面提到的数字来代替rxw进行操作例如775 446</p>
+<h1 id="权限的管理"><a href="#权限的管理" class="headerlink" title="权限的管理"></a>权限的管理</h1><h4 id="echo"><a href="#echo" class="headerlink" title="echo"></a>echo</h4><p>echo的命令是显示我们可以用echo命令来进行写入操作</p>
+<p>echo 123 &gt; 1.txt         //将123写入到1.txt内 ，1.txt会被清空后写入</p>
+<p>如果属主与属组的权限冲突，要以属主为准</p>
+<h6 id="关于特殊权限"><a href="#关于特殊权限" class="headerlink" title="关于特殊权限"></a>关于特殊权限</h6><p>SUID：用于二进制可执行文件，执行命令时取得文件的属主权限。如/usr/bin/passwd</p>
+<p>SGID：用于在目录下创建新的文件和目录，权限自动改为该目录的属组</p>
+<p>SBIT：用于在目录下新建文件和目录，仅root和自己可以删除如/tmp</p>
+<h6 id="使用特殊权限"><a href="#使用特殊权限" class="headerlink" title="使用特殊权限"></a>使用特殊权限</h6><p>suid ：chmod 4755 /geek/1</p>
+<p>sbit ：chmod  1777 /geek</p>
+<p>特殊的权限不建议手动使用</p>
+<h1 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h1><h3 id="网络状态的查看"><a href="#网络状态的查看" class="headerlink" title="网络状态的查看"></a>网络状态的查看</h3><h5 id="net-tools"><a href="#net-tools" class="headerlink" title="net-tools"></a>net-tools</h5><ul>
+<li><h6 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h6><ul>
+<li><p>eno1 板载网卡</p>
+</li>
+<li><p>ens33 PCI-E网卡</p>
+</li>
+<li><p>enp0s3 无法获取物理信息的PCL-E网卡</p>
+</li>
+<li><p>以上都不匹配则使用eth0</p>
+</li>
+<li><p>网络接口名修改</p>
+<ul>
+<li><p>网卡的命名规则受biosdevname和net.ifnames影响</p>
+</li>
+<li><p>编辑/etc/default/grub文件，增加biosdevname=0 ;net.ifnames=0</p>
+</li>
+<li><p>更新grub：grub2-mkconfig -o /boot/grub2/grub/cfg</p>
+</li>
+<li><p>reboot</p>
+</li>
+<li><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">biosdevname</th>
+<th align="center">net.ifnames</th>
+<th align="center">网卡名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">默认</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">ens33</td>
+</tr>
+<tr>
+<td align="center">组合1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">em1</td>
+</tr>
+<tr>
+<td align="center">组合2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">eth0</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>启动与关闭：ifup etho     ifdown eth0</p>
+</li>
+<li><p>ifconfig &lt;接口&gt; &lt;ip地址&gt; [netmask 子网掩码]</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h6 id="route-查看网关，最好使用-n选项"><a href="#route-查看网关，最好使用-n选项" class="headerlink" title="route 查看网关，最好使用-n选项"></a>route 查看网关，最好使用-n选项</h6><ul>
+<li>添加网关<ul>
+<li>route add default gw &lt;网关ip&gt;</li>
+<li>route add -host &lt;指定ip&gt; gw &lt;网关ip&gt;</li>
+<li>route add -net &lt;指定网段&gt; netmask &lt;子网掩码&gt; gw &lt;网关ip&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h6 id="mii-tool-查看物理连接情况"><a href="#mii-tool-查看物理连接情况" class="headerlink" title="mii-tool 查看物理连接情况"></a>mii-tool 查看物理连接情况</h6></li>
+<li><h6 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h6></li>
+</ul>
+<h5 id="iproute2"><a href="#iproute2" class="headerlink" title="iproute2"></a>iproute2</h5><ul>
+<li>ip<ul>
+<li>ip addr ls<ul>
+<li>ifconfig</li>
+</ul>
+</li>
+<li>ip link set dev eth0 up<ul>
+<li>ifup eth0</li>
+</ul>
+</li>
+<li>ip addr add 10.0.0.1/24 dev eth1<ul>
+<li>ifconfig eth1 10.0.0.1 netmask 255.255.255.0</li>
+</ul>
+</li>
+<li>ip route add 10.0.0/24 via 192.168.0.1<ul>
+<li>route add -net 10.0.0.0 netmask 255.255.255.0 gw 192.168.0.1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ss</li>
+</ul>
+<h1 id="网络故障的排除"><a href="#网络故障的排除" class="headerlink" title="网络故障的排除"></a>网络故障的排除</h1><ul>
+<li><h4 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h4><ul>
+<li>检测目标主机是否畅通</li>
+</ul>
+</li>
+<li><h4 id="traceroute"><a href="#traceroute" class="headerlink" title="traceroute"></a>traceroute</h4><ul>
+<li>追踪路由</li>
+</ul>
+</li>
+<li><h4 id="mtr"><a href="#mtr" class="headerlink" title="mtr"></a>mtr</h4><ul>
+<li>检查数据包是否丢失</li>
+</ul>
+</li>
+<li><h4 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h4><ul>
+<li>查看域名的ip</li>
+<li>查看dns：在启动nslookup后输入server</li>
+</ul>
+</li>
+<li><h4 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h4><ul>
+<li>检查端口的连接状态</li>
+</ul>
+</li>
+<li><h4 id="tcpdump"><a href="#tcpdump" class="headerlink" title="tcpdump"></a>tcpdump</h4><ul>
+<li>细致分析数据包</li>
+<li>tcpdump -i any -n -host ip and port 80 -w /tmp/file</li>
+<li>上面的命令时指定了域名和端口，以及将抓取到的保存起来 </li>
+</ul>
+</li>
+<li><h4 id="netstat-1"><a href="#netstat-1" class="headerlink" title="netstat"></a>netstat</h4><ul>
+<li><p>netstat -ntpl</p>
+<ul>
+<li>n：显示ip</li>
+<li>t：显示tcp协议</li>
+<li>p：显示进程</li>
+<li>l：启动监听状态</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h4 id="ss"><a href="#ss" class="headerlink" title="ss"></a>ss</h4><ul>
+<li>使用的参数与netstat相同</li>
+</ul>
+</li>
+</ul>
+<h1 id="网络管理配置文件"><a href="#网络管理配置文件" class="headerlink" title="网络管理配置文件"></a>网络管理配置文件</h1><h3 id="网络服务管理程序"><a href="#网络服务管理程序" class="headerlink" title="网络服务管理程序"></a>网络服务管理程序</h3><ul>
+<li><h4 id="SysV"><a href="#SysV" class="headerlink" title="SysV"></a>SysV</h4><ul>
+<li>service<ul>
+<li>service network status</li>
+<li>service network restart</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="systemd"><a href="#systemd" class="headerlink" title="systemd"></a>systemd</h4><ul>
+<li><p>systemctl</p>
+<ul>
+<li>systemctl list-unit-files NetworkManager.service</li>
+<li>systemctl restart NetworkManager.service</li>
+</ul>
+<h6 id="如何禁用network"><a href="#如何禁用network" class="headerlink" title="如何禁用network"></a>如何禁用network</h6><p>首先使用：chkconfig –list network查看开启的级别</p>
+<p>然后使用：chkconfig –level 2345 network off</p>
+<p>如何启用：chkconfig –level 2345 network on</p>
+<h6 id="如何禁用NetworkManage"><a href="#如何禁用NetworkManage" class="headerlink" title="如何禁用NetworkManage"></a>如何禁用NetworkManage</h6><p>systemctl disable NetworkManager</p>
+<p>systemctl onable NetworkManager</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li>ifcfg-eth0</li>
+<li>/etc/hosts</li>
+</ul>
+<h5 id="网卡配置文件"><a href="#网卡配置文件" class="headerlink" title="网卡配置文件"></a>网卡配置文件</h5><p>/etc/sysconfig/network-scripts/</p>
+<p>ifcfg-eth0便在这个文件夹中</p>
+<p>默认的ifcfg-eth0时动态的 </p>
+<h5 id="静态的写法"><a href="#静态的写法" class="headerlink" title="静态的写法"></a>静态的写法</h5><p>6 BOOTPROTO=none</p>
+<p>7 IPADDR=           //ip地址</p>
+<p>8 NETMASK=    255.255.255.0          //子网掩码</p>
+<p>9 GATEWAY=         //网关地址</p>
+<p>10 DNS1=114.114.114.114          //dns地址</p>
+<h3 id="主机名"><a href="#主机名" class="headerlink" title="主机名"></a>主机名</h3><p>查看 ：hostname</p>
+<p>修改：hostname test             //临时的修改</p>
+<p>hostnamectl set-hostname test         //永久的修改</p>
+<p>我们在改完之后需要在/etc/hosts 写上新的对应关系</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持是我最大的动力！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/w.png" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/z.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    geekboys
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.geekboys.cn/2021/01/04/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%8C%E5%A4%A9/" title="Linux回顾(第二天)">https://www.geekboys.cn/2021/01/04/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%8C%E5%A4%A9/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/03/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%B8%80%E5%A4%A9/" rel="next" title="Linux回顾(第一天)">
+                <i class="fa fa-chevron-left"></i> Linux回顾(第一天)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/05/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%B8%89%E5%A4%A9/" rel="prev" title="Linux回顾(第三天)">
+                Linux回顾(第三天) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/aut.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/geekboyss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">用户与权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="nav-number">1.0.1.</span> <span class="nav-text">创建用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">1.0.2.</span> <span class="nav-text">设置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="nav-number">1.0.3.</span> <span class="nav-text">删除用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E4%BF%AE%E6%94%B9"><span class="nav-number">1.0.4.</span> <span class="nav-text">属性修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%84%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="nav-number">1.0.5.</span> <span class="nav-text">组管理命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%9A%84%E5%88%87%E6%8D%A2"><span class="nav-number">1.0.6.</span> <span class="nav-text">用户的切换</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#su%E5%92%8Csudo"><span class="nav-number"></span> <span class="nav-text">su和sudo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Evisudo"><span class="nav-number">0.0.1.</span> <span class="nav-text">关于visudo</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">用户和用户组配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-passwd%E4%B8%AD7%E4%B8%AA%E5%AD%97%E6%AE%B5"><span class="nav-number">0.0.1.</span> <span class="nav-text">etc&#x2F;passwd中7个字段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-shadow"><span class="nav-number">0.0.2.</span> <span class="nav-text">etc&#x2F;shadow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#etc-group"><span class="nav-number">0.0.3.</span> <span class="nav-text">etc&#x2F;group</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number"></span> <span class="nav-text">文件权限的表示方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E6%9D%83%E9%99%90%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">0.0.0.1.</span> <span class="nav-text">字符权限的表示方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="nav-number">0.0.0.2.</span> <span class="nav-text">目录权限表示方法</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="nav-number"></span> <span class="nav-text">文件权限的修改</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chmod"><span class="nav-number">0.0.1.</span> <span class="nav-text">chmod</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-number"></span> <span class="nav-text">权限的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#echo"><span class="nav-number">0.0.1.</span> <span class="nav-text">echo</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="nav-number">0.0.1.0.1.</span> <span class="nav-text">关于特殊权限</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%89%B9%E6%AE%8A%E6%9D%83%E9%99%90"><span class="nav-number">0.0.1.0.2.</span> <span class="nav-text">使用特殊权限</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86"><span class="nav-number"></span> <span class="nav-text">网络管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81%E7%9A%84%E6%9F%A5%E7%9C%8B"><span class="nav-number">0.1.</span> <span class="nav-text">网络状态的查看</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#net-tools"><span class="nav-number">0.1.0.1.</span> <span class="nav-text">net-tools</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ifconfig"><span class="nav-number">0.1.0.1.1.</span> <span class="nav-text">ifconfig</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#route-%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%85%B3%EF%BC%8C%E6%9C%80%E5%A5%BD%E4%BD%BF%E7%94%A8-n%E9%80%89%E9%A1%B9"><span class="nav-number">0.1.0.1.2.</span> <span class="nav-text">route 查看网关，最好使用-n选项</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#mii-tool-%E6%9F%A5%E7%9C%8B%E7%89%A9%E7%90%86%E8%BF%9E%E6%8E%A5%E6%83%85%E5%86%B5"><span class="nav-number">0.1.0.1.3.</span> <span class="nav-text">mii-tool 查看物理连接情况</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#netstat"><span class="nav-number">0.1.0.1.4.</span> <span class="nav-text">netstat</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#iproute2"><span class="nav-number">0.1.0.2.</span> <span class="nav-text">iproute2</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%95%85%E9%9A%9C%E7%9A%84%E6%8E%92%E9%99%A4"><span class="nav-number"></span> <span class="nav-text">网络故障的排除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ping"><span class="nav-number">0.0.1.</span> <span class="nav-text">ping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#traceroute"><span class="nav-number">0.0.2.</span> <span class="nav-text">traceroute</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mtr"><span class="nav-number">0.0.3.</span> <span class="nav-text">mtr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nslookup"><span class="nav-number">0.0.4.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#telnet"><span class="nav-number">0.0.5.</span> <span class="nav-text">telnet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tcpdump"><span class="nav-number">0.0.6.</span> <span class="nav-text">tcpdump</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#netstat-1"><span class="nav-number">0.0.7.</span> <span class="nav-text">netstat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ss"><span class="nav-number">0.0.8.</span> <span class="nav-text">ss</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number"></span> <span class="nav-text">网络管理配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="nav-number">0.1.</span> <span class="nav-text">网络服务管理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SysV"><span class="nav-number">0.1.1.</span> <span class="nav-text">SysV</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#systemd"><span class="nav-number">0.1.2.</span> <span class="nav-text">systemd</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%A6%81%E7%94%A8network"><span class="nav-number">0.1.2.0.1.</span> <span class="nav-text">如何禁用network</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%A6%81%E7%94%A8NetworkManage"><span class="nav-number">0.1.2.0.2.</span> <span class="nav-text">如何禁用NetworkManage</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">0.2.</span> <span class="nav-text">配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">0.2.0.1.</span> <span class="nav-text">网卡配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-number">0.2.0.2.</span> <span class="nav-text">静态的写法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="nav-number">0.3.</span> <span class="nav-text">主机名</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekboys</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

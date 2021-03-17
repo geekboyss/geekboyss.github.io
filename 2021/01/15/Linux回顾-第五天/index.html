@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="交换分区swap的创建与查看 增加交换分区的大小 mkswap &#x2F;dev&#x2F;sdd1 swapon &#x2F;dev&#x2F;sdd1 swapoff &#x2F;dev&#x2F;sdd1   使用文件制作交换分区 dd if&#x3D;&#x2F;dev&#x2F;zero bs&#x3D;4M count&#x3D;1024 of&#x3D;&#x2F;swapfile chmod 600 &#x2F;swapfile mkswap &#x2F;swapfile swapon &#x2F;swapfile    以上的操作写入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux回顾(第五天)">
+<meta property="og:url" content="https://www.geekboys.cn/2021/01/15/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%94%E5%A4%A9/index.html">
+<meta property="og:site_name" content="莫邪居士的博客">
+<meta property="og:description" content="交换分区swap的创建与查看 增加交换分区的大小 mkswap &#x2F;dev&#x2F;sdd1 swapon &#x2F;dev&#x2F;sdd1 swapoff &#x2F;dev&#x2F;sdd1   使用文件制作交换分区 dd if&#x3D;&#x2F;dev&#x2F;zero bs&#x3D;4M count&#x3D;1024 of&#x3D;&#x2F;swapfile chmod 600 &#x2F;swapfile mkswap &#x2F;swapfile swapon &#x2F;swapfile    以上的操作写入">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-01-15T11:42:00.000Z">
+<meta property="article:modified_time" content="2021-01-18T08:28:58.978Z">
+<meta property="article:author" content="geekboys">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.geekboys.cn/2021/01/15/Linux回顾-第五天/"/>
+
+
+
+
+
+  <title>Linux回顾(第五天) | 莫邪居士的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/geekboyss" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">莫邪居士的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">莫邪居士的博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/01/15/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%94%E5%A4%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/aut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫邪居士的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux回顾(第五天)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-15T19:42:00+08:00">
+                2021-01-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-01-18T16:28:58+08:00">
+                2021-01-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="交换分区swap的创建与查看"><a href="#交换分区swap的创建与查看" class="headerlink" title="交换分区swap的创建与查看"></a>交换分区swap的创建与查看</h1><ul>
+<li><h4 id="增加交换分区的大小"><a href="#增加交换分区的大小" class="headerlink" title="增加交换分区的大小"></a>增加交换分区的大小</h4><ul>
+<li>mkswap /dev/sdd1</li>
+<li>swapon /dev/sdd1</li>
+<li>swapoff /dev/sdd1</li>
+</ul>
+</li>
+<li><h4 id="使用文件制作交换分区"><a href="#使用文件制作交换分区" class="headerlink" title="使用文件制作交换分区"></a>使用文件制作交换分区</h4><ul>
+<li>dd if=/dev/zero bs=4M count=1024 of=/swapfile</li>
+<li>chmod 600 /swapfile</li>
+<li>mkswap /swapfile</li>
+<li>swapon /swapfile</li>
+</ul>
+</li>
+</ul>
+<p>以上的操作写入到内存之中，如果我们要在下次开机默认开启，需要进行修改/etc/fstab</p>
+<p>在其中插入</p>
+<p>/swapfile swap swap defaules 0</p>
+<p>后面的两个0意味 备份 和自检 默认写0就好</p>
+<h1 id="RAID-磁盘阵列-的使用"><a href="#RAID-磁盘阵列-的使用" class="headerlink" title="RAID(磁盘阵列)的使用"></a>RAID(磁盘阵列)的使用</h1><ul>
+<li><h4 id="RAID的常见级别及定义"><a href="#RAID的常见级别及定义" class="headerlink" title="RAID的常见级别及定义"></a>RAID的常见级别及定义</h4><ul>
+<li>RAID 0 striping 条带方式，提高单盘吞吐率<ul>
+<li>将一个数据拆成两份，分别写入到两块磁盘里</li>
+</ul>
+</li>
+<li>RAID 1 mirroring 镜像方式，提高可靠性<ul>
+<li>将一个数据自动做了一个备份，</li>
+</ul>
+</li>
+<li>RAID 5 有奇偶校验<ul>
+<li>至少有三块硬盘，</li>
+</ul>
+</li>
+<li>RAID 10 时RAID 1和RAID 0的结合<ul>
+<li>至少4块硬盘</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="软件RAID的使用"><a href="#软件RAID的使用" class="headerlink" title="软件RAID的使用"></a>软件RAID的使用</h4><ul>
+<li>首先需要安装一个软件mdadm</li>
+<li>首先需要创建三个分区，最好是相同的大小，如果三个硬盘的大小不一样，会默认使用最小的容量</li>
+<li>例如：sdb1和sdc1和sdd1</li>
+<li>mdadm -C /dev/md0 -a yes -l1 -n2 /dev/sdb1 /dev/sdc1<ul>
+<li>-a yes表示 不进行提示</li>
+<li>-l 表示 raid的级别</li>
+<li>-n 指定几个硬盘</li>
+<li>后面就是跟得硬盘也可以写成：/dev/sd[b,c]1</li>
+</ul>
+</li>
+<li>然后可以使用mdadm -D /dev/md0进行查看</li>
+<li>echo DEVICE /dev/sd[b,c]1 &gt;&gt; /etc/mdadm.conf</li>
+<li>mdam -Evs &gt;&gt; /etc/mdadm.conf</li>
+<li>经过这两次 的写入信息之后，下次开机的时候就会自动</li>
+<li>mkfs.xfs /dev/md0  之后我们就可以进行使用了</li>
+<li>关闭raid<ul>
+<li>mdadm –stop /dev/md0</li>
+<li>然后还要对原来组成的分区进行破坏</li>
+<li>dd if=/dev/zero of=/dev/sdb1 bs=1M count=1</li>
+<li>dd if=/dev/zero of=/dev/sdc1 bs=1M count=1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="逻辑卷LVM的用途与创建"><a href="#逻辑卷LVM的用途与创建" class="headerlink" title="逻辑卷LVM的用途与创建"></a>逻辑卷LVM的用途与创建</h1><h3 id="逻辑卷管理"><a href="#逻辑卷管理" class="headerlink" title="逻辑卷管理"></a>逻辑卷管理</h3><ul>
+<li><h4 id="逻辑卷和文件系统"><a href="#逻辑卷和文件系统" class="headerlink" title="逻辑卷和文件系统"></a>逻辑卷和文件系统</h4><ul>
+<li>在raid中 其实md0 也是一个逻辑卷</li>
+<li>在物理硬盘的一个上层</li>
+</ul>
+</li>
+<li><h4 id="为LInux创建逻辑卷"><a href="#为LInux创建逻辑卷" class="headerlink" title="为LInux创建逻辑卷"></a>为LInux创建逻辑卷</h4><ul>
+<li>首先要添加新的硬盘</li>
+<li>pvcreate /dev/sd[b,c,d]1   //创建物理卷</li>
+<li>使用pvs进行查看物理卷</li>
+<li>vgcreate vg1 /dev/sdb1 /dev/sdc1  //将后面的两块硬盘加入到vg1这个卷组</li>
+<li>使用vgs来查看卷组</li>
+<li>lvcreate -L 100M -n lv1 vg1    //创建逻辑卷</li>
+<li>使用lvs来查看创建的逻辑卷</li>
+<li>mkdir /mnt/test</li>
+<li>mkfs.xfs /dev/vg1/lv1</li>
+<li>mount /dev/vg1/lv1 /mnt/test</li>
+</ul>
+</li>
+<li><h4 id="动态扩容逻辑卷"><a href="#动态扩容逻辑卷" class="headerlink" title="动态扩容逻辑卷"></a>动态扩容逻辑卷</h4><ul>
+<li>vgextend centos /dev/sdd1   //扩充卷组</li>
+<li>然后可以使用pvs vgs lvs来产看</li>
+<li>lv extend  -L +50G /dev/centos/root   //给逻辑卷增加50G</li>
+<li>xfs_growfs /dev/centos/root   //文件系统的扩充</li>
+</ul>
+</li>
+</ul>
+<h1 id="系统综合状态查看命令"><a href="#系统综合状态查看命令" class="headerlink" title="系统综合状态查看命令"></a>系统综合状态查看命令</h1><ul>
+<li><h4 id="sar"><a href="#sar" class="headerlink" title="sar"></a>sar</h4><ul>
+<li>sar -u 1 10   //查看cpu  每隔1秒  采样十次</li>
+<li>sar -r 1 10   //查看内存读写情况</li>
+<li>sar -b  1 10 //查看 io的情况</li>
+<li>sar -d  1 10  //查看每块磁盘的读写</li>
+<li>sar -q  1 10   //查看进程的情况</li>
+</ul>
+</li>
+<li><p>yum install iftop</p>
+<ul>
+<li>iftop -p   //默认只监听eth0</li>
+</ul>
+</li>
+</ul>
+<h1 id="什么是shell"><a href="#什么是shell" class="headerlink" title="什么是shell"></a>什么是shell</h1><ul>
+<li>Shell是命令解释器，用来解释命令对系统的操作</li>
+<li>Shell有很多：cat /etc/shells</li>
+<li>centos的shell是bash  基于bshell，集合了其他shell的优点</li>
+</ul>
+<h1 id="Linux的启动过程"><a href="#Linux的启动过程" class="headerlink" title="Linux的启动过程"></a>Linux的启动过程</h1><h4 id="BIOS-MBR-Bootloader（grub）-kernel-systemd-系统初始化-shell"><a href="#BIOS-MBR-Bootloader（grub）-kernel-systemd-系统初始化-shell" class="headerlink" title="BIOS - MBR- Bootloader（grub）-kernel-systemd-系统初始化-shell"></a>BIOS - MBR- Bootloader（grub）-kernel-systemd-系统初始化-shell</h4><ul>
+<li><h5 id="mbr"><a href="#mbr" class="headerlink" title="mbr"></a>mbr</h5><ul>
+<li>使用dd来导出主引导记录</li>
+<li>dd if=/dev/sda of=mbr.bin bs=446 count=1</li>
+<li>dd if=/dev/sda of=mbr.bin bs=512 count=1  //包含磁盘的分区表</li>
+<li>55 aa的意思是证明引导扇区是正确的</li>
+<li>hexdump -C mbr2.bin | more</li>
+</ul>
+</li>
+<li><p>grub</p>
+<ul>
+<li>cd /boot/grub2</li>
+<li>使用：grub2-editenv list  //查看默认引导的内核</li>
+<li>uname -r查看当前的内核</li>
+<li>如果是init0来引导，会在/etc/rc.d下有大量的配置文件</li>
+<li>如果是systemd在/etc/systemd/system会有默认的启动级别，根据这个启动级别，会来到usr/lib/systemd/system</li>
+</ul>
+</li>
+</ul>
+<h1 id="Shell脚本的格式"><a href="#Shell脚本的格式" class="headerlink" title="Shell脚本的格式"></a>Shell脚本的格式</h1><ul>
+<li><h4 id="一条命令只做一件事"><a href="#一条命令只做一件事" class="headerlink" title="一条命令只做一件事"></a>一条命令只做一件事</h4></li>
+<li><h4 id="为了组合命令，和多次执行，使用脚本文件来保存需要执行的命令"><a href="#为了组合命令，和多次执行，使用脚本文件来保存需要执行的命令" class="headerlink" title="为了组合命令，和多次执行，使用脚本文件来保存需要执行的命令"></a>为了组合命令，和多次执行，使用脚本文件来保存需要执行的命令</h4></li>
+<li><h4 id="赋予该文件的执行权限（chmod-u-rx-filename）"><a href="#赋予该文件的执行权限（chmod-u-rx-filename）" class="headerlink" title="赋予该文件的执行权限（chmod u+rx filename）"></a>赋予该文件的执行权限（chmod u+rx filename）</h4></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> demo</span></span><br><span class="line">cd /var/</span><br><span class="line">ls</span><br><span class="line">pwd</span><br><span class="line">du -sh</span><br><span class="line">du -sh *</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="标准的shell脚本要包含那些元素"><a href="#标准的shell脚本要包含那些元素" class="headerlink" title="标准的shell脚本要包含那些元素"></a>标准的shell脚本要包含那些元素</h4><ul>
+<li>sha-Bang</li>
+<li>命令</li>
+<li>#开头的注释</li>
+<li>执行命令<ul>
+<li>bash 1.sh<ul>
+<li>·可以不用赋予权限</li>
+<li>产生一个子进程来运行</li>
+</ul>
+</li>
+<li>./1.sh<ul>
+<li>需要进行赋予权限</li>
+<li>脚本内部执行了，结束后回到当前</li>
+</ul>
+</li>
+<li>source ./1.sh<ul>
+<li>使用当前的进程来运行</li>
+<li>如果使用cd的话当前的目录会发生变化</li>
+</ul>
+</li>
+<li>. 1.sh<ul>
+<li>与source相似</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="内建命令和外部命令的区别"><a href="#内建命令和外部命令的区别" class="headerlink" title="内建命令和外部命令的区别"></a>内建命令和外部命令的区别</h4><ul>
+<li>内建命令不需要创建子进程</li>
+<li>内建命令对当前shell生效</li>
+<li>source和. 不产生子经常</li>
+</ul>
+<h1 id="管道与重定向"><a href="#管道与重定向" class="headerlink" title="管道与重定向"></a>管道与重定向</h1><ul>
+<li><h4 id="管道与管道符"><a href="#管道与管道符" class="headerlink" title="管道与管道符"></a>管道与管道符</h4><ul>
+<li>管道和信号一样，也是进程通信的方式之一</li>
+<li>匿名管道（管道符）是shell编程经常用到的通信工具</li>
+<li>管道符号 “|”，将前一个命令执行的结果传递给后面的命令</li>
+<li>会为第一条第二条命令创建两个子进程</li>
+</ul>
+</li>
+<li><h4 id="子进程与子shell"><a href="#子进程与子shell" class="headerlink" title="子进程与子shell"></a>子进程与子shell</h4></li>
+<li><h4 id="重定向符号"><a href="#重定向符号" class="headerlink" title="重定向符号"></a>重定向符号</h4><ul>
+<li><p>一个进程默认会打开标准输出，标准输入，错误输出三个文件描述符</p>
+</li>
+<li><p>输入重定向符号”&lt;”</p>
+<ul>
+<li>wc -l可以统计行数</li>
+<li>wc -l &lt; /etc/passwd  //利用文件代替了用户的输入</li>
+<li>read var   //输入内容给var这个变量</li>
+<li>echo $var  就可以进行查看</li>
+<li>read var2 &lt; a.txt</li>
+</ul>
+</li>
+<li><p>输出重定向符号”&gt;” “&gt;&gt;” “2&gt;” “&amp;&gt;”</p>
+<ul>
+<li>一个&gt;会将文件进行清空</li>
+<li>两个&gt;将内容追加在后面</li>
+<li>2&gt;如果命令执行产生了错误，会将错误输出<ul>
+<li>nacmd 2&gt; a.txt</li>
+</ul>
+</li>
+<li>&amp;&gt;无论正确还是错误 全部输出</li>
+</ul>
+</li>
+<li><p>输入和输出重定向组合使用</p>
+</li>
+<li><pre><code class="shell">#!/bin/bash
+
+cat &gt; /root/a.sh &lt;&lt;EOF
+echo &quot;hello bash&quot;
+EOF</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持是我最大的动力！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/w.png" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/z.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    geekboys
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.geekboys.cn/2021/01/15/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%94%E5%A4%A9/" title="Linux回顾(第五天)">https://www.geekboys.cn/2021/01/15/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E4%BA%94%E5%A4%A9/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/14/c%E8%AF%AD%E8%A8%80%E8%BF%9B%E8%A1%8C%E6%95%B4%E6%95%B0%E5%88%86%E8%A7%A3-%E9%AB%98%E7%BA%A7/" rel="next" title="c语言进行整数分解(高级)">
+                <i class="fa fa-chevron-left"></i> c语言进行整数分解(高级)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/18/Linux%E5%9B%9E%E9%A1%BE-%E7%AC%AC%E5%85%AD%E5%A4%A9/" rel="prev" title="Linux回顾(第六天)">
+                Linux回顾(第六天) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/aut.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/geekboyss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BAswap%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.</span> <span class="nav-text">交换分区swap的创建与查看</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">增加交换分区的大小</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6%E5%88%B6%E4%BD%9C%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">使用文件制作交换分区</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAID-%E7%A3%81%E7%9B%98%E9%98%B5%E5%88%97-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">RAID(磁盘阵列)的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RAID%E7%9A%84%E5%B8%B8%E8%A7%81%E7%BA%A7%E5%88%AB%E5%8F%8A%E5%AE%9A%E4%B9%89"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">RAID的常见级别及定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6RAID%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">软件RAID的使用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%8D%B7LVM%E7%9A%84%E7%94%A8%E9%80%94%E4%B8%8E%E5%88%9B%E5%BB%BA"><span class="nav-number">3.</span> <span class="nav-text">逻辑卷LVM的用途与创建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86"><span class="nav-number">3.0.1.</span> <span class="nav-text">逻辑卷管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%8D%B7%E5%92%8C%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">逻辑卷和文件系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BALInux%E5%88%9B%E5%BB%BA%E9%80%BB%E8%BE%91%E5%8D%B7"><span class="nav-number">3.0.1.2.</span> <span class="nav-text">为LInux创建逻辑卷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E6%89%A9%E5%AE%B9%E9%80%BB%E8%BE%91%E5%8D%B7"><span class="nav-number">3.0.1.3.</span> <span class="nav-text">动态扩容逻辑卷</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E7%BB%BC%E5%90%88%E7%8A%B6%E6%80%81%E6%9F%A5%E7%9C%8B%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">系统综合状态查看命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sar"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">sar</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFshell"><span class="nav-number">5.</span> <span class="nav-text">什么是shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E7%9A%84%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">6.</span> <span class="nav-text">Linux的启动过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BIOS-MBR-Bootloader%EF%BC%88grub%EF%BC%89-kernel-systemd-%E7%B3%BB%E7%BB%9F%E5%88%9D%E5%A7%8B%E5%8C%96-shell"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">BIOS - MBR- Bootloader（grub）-kernel-systemd-系统初始化-shell</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#mbr"><span class="nav-number">6.0.0.1.1.</span> <span class="nav-text">mbr</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shell%E8%84%9A%E6%9C%AC%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">Shell脚本的格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E6%9D%A1%E5%91%BD%E4%BB%A4%E5%8F%AA%E5%81%9A%E4%B8%80%E4%BB%B6%E4%BA%8B"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">一条命令只做一件事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BA%86%E7%BB%84%E5%90%88%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%92%8C%E5%A4%9A%E6%AC%A1%E6%89%A7%E8%A1%8C%EF%BC%8C%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E6%9D%A5%E4%BF%9D%E5%AD%98%E9%9C%80%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-number">7.0.0.2.</span> <span class="nav-text">为了组合命令，和多次执行，使用脚本文件来保存需要执行的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%8B%E4%BA%88%E8%AF%A5%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90%EF%BC%88chmod-u-rx-filename%EF%BC%89"><span class="nav-number">7.0.0.3.</span> <span class="nav-text">赋予该文件的执行权限（chmod u+rx filename）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E7%9A%84shell%E8%84%9A%E6%9C%AC%E8%A6%81%E5%8C%85%E5%90%AB%E9%82%A3%E4%BA%9B%E5%85%83%E7%B4%A0"><span class="nav-number">7.0.0.4.</span> <span class="nav-text">标准的shell脚本要包含那些元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%BB%BA%E5%91%BD%E4%BB%A4%E5%92%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">7.0.0.5.</span> <span class="nav-text">内建命令和外部命令的区别</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%A1%E9%81%93%E4%B8%8E%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">8.</span> <span class="nav-text">管道与重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%A1%E9%81%93%E4%B8%8E%E7%AE%A1%E9%81%93%E7%AC%A6"><span class="nav-number">8.0.0.1.</span> <span class="nav-text">管道与管道符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E8%BF%9B%E7%A8%8B%E4%B8%8E%E5%AD%90shell"><span class="nav-number">8.0.0.2.</span> <span class="nav-text">子进程与子shell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E7%AC%A6%E5%8F%B7"><span class="nav-number">8.0.0.3.</span> <span class="nav-text">重定向符号</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekboys</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
