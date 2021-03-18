@@ -87,7 +87,7 @@
 <meta property="og:description" content="数据类型 作用：告诉编译器我这个数据在内存中需要多少的空间  常量：程序运行中不能改变的量  整形常量：1，34 字符常量：’a’ 字符串常量：’hello’ 浮点型常量：123.32   变量  程序在运行中可以被改变的量，存在于内存中   变量需要定义：在内存中开辟空间（声名）  变量的定义形式：数据类型 变量名     类型 占用字节    int 4字节   short 2字节   lon">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-03-14T02:42:00.000Z">
-<meta property="article:modified_time" content="2021-03-17T09:02:15.911Z">
+<meta property="article:modified_time" content="2021-03-17T16:08:48.165Z">
 <meta property="article:author" content="geekboys">
 <meta name="twitter:card" content="summary">
 
@@ -289,8 +289,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-03-17T17:02:15+08:00">
-                2021-03-17
+              <time title="更新于" itemprop="dateModified" datetime="2021-03-18T00:08:48+08:00">
+                2021-03-18
               </time>
             
           </span>
@@ -458,9 +458,28 @@ int main()
     printf(&quot;%d\n&quot;,sizeof(a));
     printf(&quot;%d\n&quot;,sizeof(short));
     return 0;
-&#125;</code></pre>
+&#125;
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-   </span><br><span class="line"></span><br><span class="line"><span class="meta">### 整数打印格式、</span></span><br><span class="line"></span><br><span class="line">- %d 有符号打印<span class="built_in">int</span></span><br><span class="line">- %u 无符号打印<span class="built_in">int</span></span><br><span class="line">- %hd 有符号打印<span class="built_in">short</span></span><br><span class="line">- %hu 无符号打印<span class="built_in">short</span></span><br><span class="line">- %ld 有符号<span class="built_in">long</span></span><br><span class="line">- %lu 无符号<span class="built_in">long</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#### 字符型</span></span><br><span class="line"></span><br><span class="line">- 单个字符用单引号<span class="string">&#x27;&#x27;</span>引起来</span><br><span class="line">- 字符<span class="string">&#x27;0&#x27;</span>的ascii值位<span class="number">48</span></span><br><span class="line">- 字符<span class="string">&#x27;1&#x27;</span>的ascii值是<span class="number">49</span></span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">- <span class="string">&#x27;A&#x27;</span> ascii值是<span class="number">65</span></span><br><span class="line">- <span class="string">&#x27;a&#x27;</span> asscii值是<span class="number">97</span></span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  <span class="meta">#include &lt;stdio.h&gt;</span></span><br><span class="line">  <span class="function"><span class="built_in">int</span> <span class="title">main</span>(<span class="params"><span class="keyword">void</span></span>)</span></span><br><span class="line"><span class="function"></span>  &#123;</span><br><span class="line">      <span class="built_in">char</span> ch = <span class="number">65</span>;</span><br><span class="line">      ch = ch + <span class="number">32</span>;</span><br><span class="line">      printf(<span class="string">&quot;%c\n&quot;</span>,ch);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
 </li>
-<li></li>
+</ul>
+<h5 id="读取多个字符问题"><a href="#读取多个字符问题" class="headerlink" title="读取多个字符问题"></a>读取多个字符问题</h5><ul>
+<li><pre><code class="c">#include &lt;stdio.h&gt;
+int main(void)
+&#123;
+    char ch;
+    scanf(&quot;%c&quot;,&amp;ch);
+    printf(&quot;%c\n&quot;,ch);
+&#125;</code></pre>
+<p>%c只会读一个字符 </p>
+</li>
+</ul>
+<h5 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h5><ul>
+<li>\n :换行</li>
+<li>\a：警报</li>
+<li>\t:水平制表</li>
+<li>\v:垂直制表</li>
+<li>\r:将光标移到本行开头</li>
 </ul>
 
       
@@ -682,7 +701,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E7%9A%84%E4%B9%A6%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text">进制的书写</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sizeof"><span class="nav-number">2.0.1.</span> <span class="nav-text">sizeof()</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6%E7%9A%84%E4%B9%A6%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text">进制的书写</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#sizeof"><span class="nav-number">2.0.1.</span> <span class="nav-text">sizeof()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E5%A4%9A%E4%B8%AA%E5%AD%97%E7%AC%A6%E9%97%AE%E9%A2%98"><span class="nav-number">2.0.2.</span> <span class="nav-text">读取多个字符问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="nav-number">2.0.3.</span> <span class="nav-text">转义字符</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
