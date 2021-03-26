@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="算术运算符 两数相除，如果要得小数，必须有一个是double或者float 除数不能为零   %：取模，就是数学中的余数  求个十百千位（int num 1234） 个位：num%10  十位：num&#x2F;10%10  百位：num&#x2F;100%10  千位：num&#x2F;1000%10   自加自减  如果 a++和++a单独使用效果相同  int a &#x3D; 1; int b; b &#x3D; a++; printf(">
+<meta name="description" content="算术运算符 两数相除，如果要得小数，必须有一个是double或者float 除数不能为零   %：取模，就是数学中的余数  求个十百千位（int num 1234） 个位：num%10  十位：num&#x2F;10%10  百位：num&#x2F;100%10  千位：num&#x2F;1000%10   自加自减 如果 a++和++a单独使用效果相同  1234int a &#x3D; 1;int b;b &#x3D; a++;printf(">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c复习day03">
 <meta property="og:url" content="https://www.geekboys.cn/2021/03/18/c%E5%A4%8D%E4%B9%A0day03/index.html">
 <meta property="og:site_name" content="莫邪居士的博客">
-<meta property="og:description" content="算术运算符 两数相除，如果要得小数，必须有一个是double或者float 除数不能为零   %：取模，就是数学中的余数  求个十百千位（int num 1234） 个位：num%10  十位：num&#x2F;10%10  百位：num&#x2F;100%10  千位：num&#x2F;1000%10   自加自减  如果 a++和++a单独使用效果相同  int a &#x3D; 1; int b; b &#x3D; a++; printf(">
+<meta property="og:description" content="算术运算符 两数相除，如果要得小数，必须有一个是double或者float 除数不能为零   %：取模，就是数学中的余数  求个十百千位（int num 1234） 个位：num%10  十位：num&#x2F;10%10  百位：num&#x2F;100%10  千位：num&#x2F;1000%10   自加自减 如果 a++和++a单独使用效果相同  1234int a &#x3D; 1;int b;b &#x3D; a++;printf(">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-03-18T15:05:00.000Z">
-<meta property="article:modified_time" content="2021-03-19T17:17:40.358Z">
+<meta property="article:modified_time" content="2021-03-26T06:16:05.447Z">
 <meta property="article:author" content="geekboys">
 <meta name="twitter:card" content="summary">
 
@@ -289,8 +289,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-03-20T01:17:40+08:00">
-                2021-03-20
+              <time title="更新于" itemprop="dateModified" datetime="2021-03-26T14:16:05+08:00">
+                2021-03-26
               </time>
             
           </span>
@@ -361,109 +361,135 @@
 </li>
 </ul>
 <h3 id="自加自减"><a href="#自加自减" class="headerlink" title="自加自减"></a>自加自减</h3><ul>
-<li><p> 如果 a++和++a单独使用效果相同</p>
+<li>如果 a++和++a单独使用效果相同</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> b;</span><br><span class="line">b = a++;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,a,n)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>以上代码b等于1，a等于2；</p>
 </li>
-<li><pre><code class="c">int a = 1;
-int b;
-b = a++;
-printf(&quot;%d %d&quot;,a,n)
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 以上代码b等于<span class="number">1</span>，a等于<span class="number">2</span>；</span><br><span class="line"></span><br><span class="line">- 结合其他表达式子</span><br><span class="line"></span><br><span class="line">- ++在前先加后使用，++在后先用后加 <span class="number">5</span></span><br><span class="line"></span><br><span class="line">### 赋值运算符号</span><br><span class="line"></span><br><span class="line">- a += <span class="number">2</span>   -&gt; a = a+ <span class="number">2</span> ;</span><br><span class="line">- a *= <span class="number">3</span> -&gt; a = a * <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">### 比较运算符</span><br><span class="line"></span><br><span class="line">- ==  判断是否等于</span><br><span class="line">- !=   不等于 </span><br><span class="line">- 在x语言中<span class="number">0</span>为假 <span class="number">1</span>为真</span><br><span class="line"></span><br><span class="line">### 逻辑运算符</span><br><span class="line"></span><br><span class="line">- 逻辑非</span><br><span class="line">  - 非<span class="number">0</span>为真</span><br><span class="line">- 逻辑&amp;&amp;必须a和b都为真，整个表达式的值才为真</span><br><span class="line">  - 当前面为假的时候，b表达式不执行</span><br><span class="line">- 逻辑||</span><br><span class="line">  - 只要有一个为真就为真</span><br><span class="line">  - 如果a||b，如果a为真b表达式不执行</span><br><span class="line"></span><br><span class="line">### 优先级</span><br><span class="line"></span><br><span class="line">- 如果是同一个优先级，则看结合方向</span><br><span class="line"></span><br><span class="line">### 逗号运算符</span><br><span class="line"></span><br><span class="line">- 最终的结果是最后一个表达式的结果</span><br><span class="line"></span><br><span class="line">### 类型转换</span><br><span class="line"></span><br><span class="line">- #### 自动转换</span><br><span class="line"></span><br><span class="line">  - 所需要的类型，和给的类型不匹配，需要进行转换</span><br><span class="line"></span><br><span class="line">- #### 强制转换</span><br><span class="line"></span><br><span class="line">  - (int)<span class="number">2.14</span>  :强制转换为int类型</span><br><span class="line">  - (double)<span class="number">2</span> :转换为double类型</span><br><span class="line"></span><br><span class="line">- #### 转换的原则：</span><br><span class="line">  - 数据不丢失：一般都是小的转大的</span><br><span class="line"></span><br><span class="line">### 选择结构</span><br><span class="line"></span><br><span class="line">- ##### <span class="keyword">if</span></span><br><span class="line">  -  <span class="keyword">if</span>后面不要加分号，分号是空语句，导致后面的代码不属于<span class="keyword">if</span>结构</span><br><span class="line">  - 在条件中最好常量卸载左边</span><br><span class="line">  - 如果<span class="keyword">if</span>语句后面只有一条语句，则可以不加  属于<span class="keyword">if</span></span><br><span class="line"></span><br><span class="line">##### <span class="keyword">if</span> else</span><br><span class="line"></span><br><span class="line">- 结果有两种</span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  #include &lt;stdio.h&gt;</span><br><span class="line">  int main(void)</span><br><span class="line">  &#123;</span><br><span class="line">      int a = <span class="number">2</span>;</span><br><span class="line">      int b = <span class="number">3</span>;</span><br><span class="line">      <span class="keyword">if</span> (a &lt; b)</span><br><span class="line">      &#123;</span><br><span class="line">          printf(<span class="string">&quot;a &lt; b\n&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">          printf(<span class="string">&quot;a &gt; b\n&quot;</span>);</span><br><span class="line">         </span><br><span class="line">      &#125;</span><br><span class="line">      return <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
+<li><p>结合其他表达式子</p>
 </li>
-<li><p>如果条件成立执行if中的循环体语句，条件不成立执行else中的语句</p>
+<li><p>++在前先加后使用，++在后先用后加 5</p>
 </li>
-<li><p>除此之外我们还可以使用多级的if else if else if else</p>
+</ul>
+<h3 id="赋值运算符号"><a href="#赋值运算符号" class="headerlink" title="赋值运算符号"></a>赋值运算符号</h3><ul>
+<li>a += 2   -&gt; a = a+ 2 ;</li>
+<li>a *= 3 -&gt; a = a * 3;</li>
+</ul>
+<h3 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h3><ul>
+<li>==  判断是否等于</li>
+<li>!=   不等于 </li>
+<li>在x语言中0为假 1为真</li>
+</ul>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><ul>
+<li>逻辑非<ul>
+<li>非0为真</li>
+</ul>
 </li>
-<li><p>如果结果有多种，但是不确定，而且每个结果是互斥的用多级的if else</p>
+<li>逻辑&amp;&amp;必须a和b都为真，整个表达式的值才为真<ul>
+<li>当前面为假的时候，b表达式不执行</li>
+</ul>
 </li>
+<li>逻辑||<ul>
+<li>只要有一个为真就为真</li>
+<li>如果a||b，如果a为真b表达式不执行</li>
+</ul>
+</li>
+</ul>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><ul>
+<li>如果是同一个优先级，则看结合方向</li>
+</ul>
+<h3 id="逗号运算符"><a href="#逗号运算符" class="headerlink" title="逗号运算符"></a>逗号运算符</h3><ul>
+<li>最终的结果是最后一个表达式的结果</li>
+</ul>
+<h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><ul>
+<li><h4 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h4><ul>
+<li>所需要的类型，和给的类型不匹配，需要进行转换</li>
+</ul>
+</li>
+<li><h4 id="强制转换"><a href="#强制转换" class="headerlink" title="强制转换"></a>强制转换</h4><ul>
+<li>(int)2.14  :强制转换为int类型</li>
+<li>(double)2 :转换为double类型</li>
+</ul>
+</li>
+<li><h4 id="转换的原则："><a href="#转换的原则：" class="headerlink" title="转换的原则："></a>转换的原则：</h4><ul>
+<li>数据不丢失：一般都是小的转大的</li>
+</ul>
+</li>
+</ul>
+<h3 id="选择结构"><a href="#选择结构" class="headerlink" title="选择结构"></a>选择结构</h3><ul>
+<li><h5 id="if"><a href="#if" class="headerlink" title="if"></a>if</h5><ul>
+<li> if后面不要加分号，分号是空语句，导致后面的代码不属于if结构</li>
+<li>在条件中最好常量卸载左边</li>
+<li>如果if语句后面只有一条语句，则可以不加  属于if</li>
+</ul>
+</li>
+</ul>
+<h5 id="if-else"><a href="#if-else" class="headerlink" title="if else"></a>if else</h5><ul>
+<li>结果有两种</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span> (a &lt; b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;a &lt; b\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;a &gt; b\n&quot;</span>);</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果条件成立执行if中的循环体语句，条件不成立执行else中的语句</li>
+<li>除此之外我们还可以使用多级的if else if else if else</li>
+<li>如果结果有多种，但是不确定，而且每个结果是互斥的用多级的if else</li>
 </ul>
 <h3 id="三目运算符"><a href="#三目运算符" class="headerlink" title="三目运算符"></a>三目运算符</h3><ul>
 <li>求a和b的最大值</li>
 <li>a&gt;b?a:b</li>
 <li>如果a大于b 表达式的值就是a，否则就是b</li>
 </ul>
-<h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h3><ul>
-<li><pre><code class="c">switch (a)
-&#123;
-    case 0:
-        printf(&quot;nihao\n&quot;);
-        break;
-    case 1:
-        printf(&quot;hello&quot;);
-        break;
-    defaule://默认
-        printf(&quot;def&quot;);
-        break;
-&#125;
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- ()中判断条件只能是整数</span><br><span class="line"></span><br><span class="line">- <span class="keyword">break</span>的作用是用来跳出循环，如果没有<span class="keyword">break</span>会跳过下一句的判断直接执行</span><br><span class="line"></span><br><span class="line"><span class="meta">### 循环结构</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#### while循环</span></span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  <span class="meta">#include &lt;stdio.h&gt;</span></span><br><span class="line">  <span class="built_in">int</span> main()</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="built_in">int</span> <span class="keyword">sum</span> = <span class="number">0</span>;</span><br><span class="line">      <span class="built_in">int</span> i = <span class="number">1</span>;</span><br><span class="line">      <span class="comment">//条件为真就执行,条件为假结束循环</span></span><br><span class="line">      <span class="comment">//注意:while条件后面没有分号</span></span><br><span class="line">      <span class="keyword">while</span> (i &lt;= <span class="number">100</span>)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">sum</span> += <span class="keyword">sum</span>;</span><br><span class="line">          i++;</span><br><span class="line">      &#125;</span><br><span class="line">      printf(<span class="string">&quot;%d\n&quot;</span>,<span class="keyword">sum</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
-</li>
-<li><p>当我们需要做多次且重复的事情的时候</p>
-</li>
-<li><p>上面的程序通过循环来实现了加和的计算</p>
-</li>
-<li><p>while(1) : 死循环</p>
-</li>
-</ul>
-<h4 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h4><ul>
-<li><pre><code class="c">do &#123;
+<h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (a)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;nihao\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    defaule:<span class="comment">//默认</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;def&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-&#125; while ();
-<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 与<span class="keyword">while</span>的区别就是,会先进行执行,然后再进行判断</span><br><span class="line">- 无论条件是否满足都会执行一次</span><br><span class="line"></span><br><span class="line">#### <span class="keyword">for</span>循环</span><br><span class="line"></span><br><span class="line">- ```c</span><br><span class="line">  <span class="keyword">for</span>(int <span class="symbol">x</span>; <span class="symbol">x</span> &lt; n; <span class="symbol">x</span>++)</span><br><span class="line">  &#123;</span><br><span class="line">      sum += <span class="symbol">x</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
-</li>
-<li><p>括号中的三个表达式都是可有可无</p>
-</li>
-<li><p>初始化表达式只会执行一次</p>
-</li>
-<li><p>条件表达式是执行的条件</p>
-</li>
-<li><p>条件递增是为了修改条件的控制</p>
-</li>
-<li><p>for后面也不可以加分号,否则即使一直在执行空语句</p>
-</li>
-<li><p>如果for循环中不写条件,默认为真 </p>
-</li>
+<ul>
+<li>()中判断条件只能是整数</li>
+<li>break的作用是用来跳出循环，如果没有break会跳过下一句的判断直接执行</li>
 </ul>
-<h4 id="嵌套循环"><a href="#嵌套循环" class="headerlink" title="嵌套循环"></a>嵌套循环</h4><ul>
-<li><pre><code class="c">#include &lt;stdio.h&gt;
-int main()
-&#123;
-    int i = 0;
-    int j = 0;
-    for (i = 0;i &lt; 2;i++)
-    &#123;
-        for (j = 0;j &lt; 3;j++)
-        &#123;
-            printf(&quot;%d %d&quot;,i,j);
-        &#125;
-    &#125;
-    return 0;
-&#125;
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 如果我们在循环中再写一个循环就叫做 循环的嵌套</span><br><span class="line"></span><br><span class="line">- 不仅仅是<span class="keyword">for</span> ,<span class="keyword">while</span>,<span class="keyword">if</span>也可以是用嵌套</span><br><span class="line"></span><br><span class="line">### 跳转语句</span><br><span class="line"></span><br><span class="line">- ###<span class="meta"># break</span></span><br><span class="line"></span><br><span class="line">  - 跳出<span class="keyword">switch</span>或者离<span class="keyword">break</span>最近的一层循环</span><br><span class="line"></span><br><span class="line">- ###<span class="meta"># continue</span></span><br><span class="line"></span><br><span class="line">  - 跳过本次循环</span><br><span class="line"></span><br><span class="line">  ```c</span><br><span class="line">  <span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">  	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">if</span> (i == <span class="number">2</span>)</span><br><span class="line">          &#123;</span><br><span class="line">              <span class="comment">//break;</span></span><br><span class="line">              <span class="keyword">continue</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></code></pre>
+<h3 id="循环结构"><a href="#循环结构" class="headerlink" title="循环结构"></a>循环结构</h3><h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">//条件为真就执行,条件为假结束循环</span></span><br><span class="line">    <span class="comment">//注意:while条件后面没有分号</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt;= <span class="number">100</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        sum += sum;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,sum);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当我们需要做多次且重复的事情的时候</li>
+<li>上面的程序通过循环来实现了加和的计算</li>
+<li>while(1) : 死循环</li>
+</ul>
+<h4 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">while</span> ();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>与while的区别就是,会先进行执行,然后再进行判断</li>
+<li>无论条件是否满足都会执行一次</li>
+</ul>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> x; x &lt; n; x++)</span><br><span class="line">&#123;</span><br><span class="line">    sum += x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>括号中的三个表达式都是可有可无</li>
+<li>初始化表达式只会执行一次</li>
+<li>条件表达式是执行的条件</li>
+<li>条件递增是为了修改条件的控制</li>
+<li>for后面也不可以加分号,否则即使一直在执行空语句</li>
+<li>如果for循环中不写条件,默认为真 </li>
+</ul>
+<h4 id="嵌套循环"><a href="#嵌套循环" class="headerlink" title="嵌套循环"></a>嵌套循环</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>;i &lt; <span class="number">2</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>;j &lt; <span class="number">3</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,i,j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果我们在循环中再写一个循环就叫做 循环的嵌套</li>
+<li>不仅仅是for ,while,if也可以是用嵌套</li>
+</ul>
+<h3 id="跳转语句"><a href="#跳转语句" class="headerlink" title="跳转语句"></a>跳转语句</h3><ul>
+<li><h4 id="break"><a href="#break" class="headerlink" title="break"></a>break</h4><ul>
+<li>跳出switch或者离break最近的一层循环</li>
+</ul>
+</li>
+<li><h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h4><ul>
+<li>跳过本次循环</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//break;</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>可以使用如上代码来比较continue和break的区别</p>
 </li>
-<li><h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h4><ul>
-<li><p>无条件跳转</p>
-</li>
-<li><pre><code class="c">#include &lt;stdio.h&gt;
-int main()
-&#123;
-    int i = 0;
-    int j;
-    for (i = 0; i &lt; 2; i++)
-    &#123;
-        for ( j = 0; j &lt; 3;j++)
-        &#123;
-            if (j == 1)
-                goto end
-                //break;
-            printf(&quot;i = %d j = %d\n&quot;,i,j)
-        &#125;
-    &#125;
-    end:
-    return 0;
-&#125;</code></pre>
-</li>
-</ul>
+<li><h4 id="goto"><a href="#goto" class="headerlink" title="goto"></a>goto</h4><p>无条件跳转</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">2</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> ( j = <span class="number">0</span>; j &lt; <span class="number">3</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">goto</span> end</span><br><span class="line">                <span class="comment">//break;</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;i = %d j = %d\n&quot;</span>,i,j)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    end:</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>由于break只能跳出一层的循环,所以我们可以使用goto来跳出多重的循环</p>
 </li>
@@ -694,7 +720,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">算术运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B1%82%E4%B8%AA%E5%8D%81%E7%99%BE%E5%8D%83%E4%BD%8D%EF%BC%88int-num-1234%EF%BC%89"><span class="nav-number">1.0.1.</span> <span class="nav-text">求个十百千位（int num 1234）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A0%E8%87%AA%E5%87%8F"><span class="nav-number">2.</span> <span class="nav-text">自加自减</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">三目运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch"><span class="nav-number">4.</span> <span class="nav-text">Switch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#do-while%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.1.</span> <span class="nav-text">do while循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF"><span class="nav-number">4.2.</span> <span class="nav-text">嵌套循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#goto"><span class="nav-number">4.3.</span> <span class="nav-text">goto</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">4.4.</span> <span class="nav-text">循环的注意事项</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">算术运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B1%82%E4%B8%AA%E5%8D%81%E7%99%BE%E5%8D%83%E4%BD%8D%EF%BC%88int-num-1234%EF%BC%89"><span class="nav-number">1.0.1.</span> <span class="nav-text">求个十百千位（int num 1234）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A0%E8%87%AA%E5%87%8F"><span class="nav-number">2.</span> <span class="nav-text">自加自减</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%B7"><span class="nav-number">3.</span> <span class="nav-text">赋值运算符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">6.</span> <span class="nav-text">优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%97%E5%8F%B7%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">7.</span> <span class="nav-text">逗号运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">8.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2"><span class="nav-number">8.1.</span> <span class="nav-text">自动转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">8.2.</span> <span class="nav-text">强制转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E7%9A%84%E5%8E%9F%E5%88%99%EF%BC%9A"><span class="nav-number">8.3.</span> <span class="nav-text">转换的原则：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E7%BB%93%E6%9E%84"><span class="nav-number">9.</span> <span class="nav-text">选择结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#if"><span class="nav-number">9.0.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#if-else"><span class="nav-number">9.0.2.</span> <span class="nav-text">if else</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">10.</span> <span class="nav-text">三目运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Switch"><span class="nav-number">11.</span> <span class="nav-text">Switch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-number">12.</span> <span class="nav-text">循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#while%E5%BE%AA%E7%8E%AF"><span class="nav-number">12.1.</span> <span class="nav-text">while循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#do-while%E5%BE%AA%E7%8E%AF"><span class="nav-number">12.2.</span> <span class="nav-text">do while循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for%E5%BE%AA%E7%8E%AF"><span class="nav-number">12.3.</span> <span class="nav-text">for循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF"><span class="nav-number">12.4.</span> <span class="nav-text">嵌套循环</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%B3%E8%BD%AC%E8%AF%AD%E5%8F%A5"><span class="nav-number">13.</span> <span class="nav-text">跳转语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#break"><span class="nav-number">13.1.</span> <span class="nav-text">break</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#continue"><span class="nav-number">13.2.</span> <span class="nav-text">continue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#goto"><span class="nav-number">13.3.</span> <span class="nav-text">goto</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">13.4.</span> <span class="nav-text">循环的注意事项</span></a></li></ol></li></ol></div>
             
 
           </div>
