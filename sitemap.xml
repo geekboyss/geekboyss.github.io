@@ -272,14 +272,14 @@
   </url>
   
   <url>
-    <loc>https://www.geekboys.cn/categories/Linux/</loc>
+    <loc>https://www.geekboys.cn/categories/github/</loc>
     <lastmod>2021-03-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.geekboys.cn/categories/github/</loc>
+    <loc>https://www.geekboys.cn/categories/Linux/</loc>
     <lastmod>2021-03-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
