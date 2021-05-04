@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="1.数据类型 编译器指定出的数据类型,为了更好的管理内存  2.c语言标准 ANSI 美国国家标准协会制订出的标准,在89年制订出第一套c89标准  3.typedef 使用 主要用途:给类型起别名 可以简化struct关键字 可以区分数据类型 提高代码可移植型  4.void的使用 无类型,不可以创建变量,无法分配内存 限定函数返回值 限定函数中参数列表 void *:万能指针,可以不需要强制转">
+<meta name="description" content="须知少时凌云志,曾许人间第一流">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c语言提高day01">
-<meta property="og:url" content="https://www.geekboys.cn/2021/04/21/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day01/index.html">
+<meta property="og:title" content="c语言提高day05">
+<meta property="og:url" content="https://www.geekboys.cn/2021/05/04/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day05/index.html">
 <meta property="og:site_name" content="莫邪居士的博客">
-<meta property="og:description" content="1.数据类型 编译器指定出的数据类型,为了更好的管理内存  2.c语言标准 ANSI 美国国家标准协会制订出的标准,在89年制订出第一套c89标准  3.typedef 使用 主要用途:给类型起别名 可以简化struct关键字 可以区分数据类型 提高代码可移植型  4.void的使用 无类型,不可以创建变量,无法分配内存 限定函数返回值 限定函数中参数列表 void *:万能指针,可以不需要强制转">
+<meta property="og:description" content="须知少时凌云志,曾许人间第一流">
 <meta property="og:locale">
-<meta property="article:published_time" content="2021-04-21T14:38:00.000Z">
-<meta property="article:modified_time" content="2021-05-03T13:58:12.277Z">
+<meta property="article:published_time" content="2021-05-04T14:01:00.000Z">
+<meta property="article:modified_time" content="2021-05-04T14:02:01.886Z">
 <meta property="article:author" content="geekboys">
 <meta name="twitter:card" content="summary">
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="https://www.geekboys.cn/2021/04/21/c语言提高day01/"/>
+  <link rel="canonical" href="https://www.geekboys.cn/2021/05/04/c语言提高day05/"/>
 
 
 
 
 
-  <title>c语言提高day01 | 莫邪居士的博客</title>
+  <title>c语言提高day05 | 莫邪居士的博客</title>
   
 
 
@@ -244,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/04/21/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day01/">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/05/04/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -261,7 +261,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">c语言提高day01</h2>
+          <h2 class="post-title" itemprop="name headline">c语言提高day05</h2>
         
 
         <div class="post-meta">
@@ -273,8 +273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-04-21T22:38:00+08:00">
-                2021-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-04T22:01:00+08:00">
+                2021-05-04
               </time>
             
 
@@ -289,8 +289,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-05-03T21:58:12+08:00">
-                2021-05-03
+              <time title="更新于" itemprop="dateModified" datetime="2021-05-04T22:02:01+08:00">
+                2021-05-04
               </time>
             
           </span>
@@ -345,116 +345,7 @@
       
 
       
-        <h4 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h4><ul>
-<li>编译器指定出的数据类型,为了更好的管理内存</li>
-</ul>
-<h4 id="2-c语言标准"><a href="#2-c语言标准" class="headerlink" title="2.c语言标准"></a>2.c语言标准</h4><ul>
-<li>ANSI 美国国家标准协会制订出的标准,在89年制订出第一套c89标准</li>
-</ul>
-<h4 id="3-typedef-使用"><a href="#3-typedef-使用" class="headerlink" title="3.typedef 使用"></a>3.typedef 使用</h4><ul>
-<li>主要用途:给类型起别名</li>
-<li>可以简化struct关键字</li>
-<li>可以区分数据类型</li>
-<li>提高代码可移植型</li>
-</ul>
-<h4 id="4-void的使用"><a href="#4-void的使用" class="headerlink" title="4.void的使用"></a>4.void的使用</h4><ul>
-<li>无类型,不可以创建变量,无法分配内存</li>
-<li>限定函数返回值</li>
-<li>限定函数中参数列表</li>
-<li>void *:万能指针,可以不需要强制转换给其他指针变量赋值</li>
-</ul>
-<h4 id="5-sizeof-的使用"><a href="#5-sizeof-的使用" class="headerlink" title="5.sizeof 的使用"></a>5.sizeof 的使用</h4><ul>
-<li>本质:不是函数,而是一个操作符<ul>
-<li>当统计类型占的内存空间时候,必须加上小括号</li>
-<li>当统计变量占的内存空间时候,可以不加小括号</li>
-</ul>
-</li>
-<li>返回值类型:无符号整型 unsigned int</li>
-<li>可以统计数组的长度</li>
-<li>数组名如果在参数列表中,会退化为指针,指向数组的第一个元素</li>
-</ul>
-<h4 id="6-变量的修改方式"><a href="#6-变量的修改方式" class="headerlink" title="6.变量的修改方式"></a>6.变量的修改方式</h4><ul>
-<li>直接修改</li>
-<li>间接修改<ul>
-<li>通过指针对内存进行修改</li>
-<li>对自定义数据类型进行修改</li>
-</ul>
-</li>
-</ul>
-<h4 id="7-内存分区"><a href="#7-内存分区" class="headerlink" title="7.内存分区"></a>7.内存分区</h4><ul>
-<li><p>运行前</p>
-<ul>
-<li>代码区<ul>
-<li>共享的</li>
-<li>只读的</li>
-</ul>
-</li>
-<li>数据区<ul>
-<li>data:已初始化的全局变量,静态变量,常量</li>
-<li>bss:未初始化的全局变量,静态变量,常量</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>运行后</p>
-<ul>
-<li>栈区<ul>
-<li>属于先进后出的数据结构</li>
-<li>由编译器管理数据开辟和释放</li>
-<li>变量的声明周期在该函数结束后自动释放掉</li>
-</ul>
-</li>
-<li>堆区<ul>
-<li>容量远远大于栈区</li>
-<li>没有先进后出的数据结构</li>
-<li>由程序员管理开辟和释放:malloc,free</li>
-<li>手动开辟的要手动释放</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="8-栈区"><a href="#8-栈区" class="headerlink" title="8.栈区"></a>8.栈区</h4><ul>
-<li>不要返回局部变量的值,因为局部变量在函数执行之后就释放啦</li>
-<li>我们没有权限操作释放后的内存</li>
-</ul>
-<h4 id="9-堆区"><a href="#9-堆区" class="headerlink" title="9.堆区"></a>9.堆区</h4><ul>
-<li>在堆区开辟的数据,记得要手动释放</li>
-<li>如果在主调函数中没有给指针分配内存,那么被调用函数需要使用高一级指针给主调函数的指针分配内存</li>
-</ul>
-<h4 id="10-数据区"><a href="#10-数据区" class="headerlink" title="10.数据区"></a>10.数据区</h4><ul>
-<li><p>放入是静态变量,全局变量,常量</p>
-</li>
-<li><p>static 和 extern区别</p>
-<ul>
-<li>static 静态变量:编译阶段分配内存,只能在当前文件内使用,只初始化一次</li>
-<li>extern 全局变量:c语言下默认的全局变量前都隐藏的加了该关键字</li>
-</ul>
-</li>
-<li><p>const修饰的变量</p>
-<ul>
-<li>全局变量<ul>
-<li>直接修改 失败</li>
-<li>间接修改 失败 因为放在常量区,收到保护</li>
-</ul>
-</li>
-<li>局部变量<ul>
-<li>直接修改 失败</li>
-<li>间接修改 成功 原因放在栈上</li>
-<li>伪常量 不可以初始化数组</li>
-</ul>
-</li>
-<li>字符串常量<ul>
-<li>不同的编译器可能有不同的处理方式</li>
-<li>ANSI没有指定出标准</li>
-<li>有些编译器可以修改字符串常量,有些不可以</li>
-<li>有些编译器将相同的字符串常量看成一个</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+        
       
     </div>
     
@@ -503,7 +394,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://www.geekboys.cn/2021/04/21/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day01/" title="c语言提高day01">https://www.geekboys.cn/2021/04/21/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day01/</a>
+    <a href="https://www.geekboys.cn/2021/05/04/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day05/" title="c语言提高day05">https://www.geekboys.cn/2021/05/04/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day05/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -525,8 +416,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/04/21/c%E5%A4%8D%E4%B9%A0day11/" rel="next" title="c复习day11">
-                <i class="fa fa-chevron-left"></i> c复习day11
+              <a href="/2021/05/03/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day02/" rel="next" title="c语言提高day02">
+                <i class="fa fa-chevron-left"></i> c语言提高day02
               </a>
             
           </div>
@@ -535,8 +426,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/04/27/Github%E7%AC%94%E8%AE%B0/" rel="prev" title="Github笔记">
-                Github笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/05/04/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day04/" rel="prev" title="c语言提高day04">
+                c语言提高day04 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -589,17 +480,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -664,22 +546,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">1.数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-c%E8%AF%AD%E8%A8%80%E6%A0%87%E5%87%86"><span class="nav-number">2.</span> <span class="nav-text">2.c语言标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-typedef-%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">3.typedef 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-void%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">4.void的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-sizeof-%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">5.sizeof 的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%8F%98%E9%87%8F%E7%9A%84%E4%BF%AE%E6%94%B9%E6%96%B9%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">6.变量的修改方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%86%85%E5%AD%98%E5%88%86%E5%8C%BA"><span class="nav-number">7.</span> <span class="nav-text">7.内存分区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E6%A0%88%E5%8C%BA"><span class="nav-number">8.</span> <span class="nav-text">8.栈区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E5%A0%86%E5%8C%BA"><span class="nav-number">9.</span> <span class="nav-text">9.堆区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="nav-number">10.</span> <span class="nav-text">10.数据区</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
