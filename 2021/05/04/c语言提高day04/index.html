@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="须知少时凌云志,曾许人间第一流">
+<meta name="description" content="1.一维数组名称 本身并不是一个指针  有两种特殊的情况  对数组名进行sizeof 对数组名称取地址,过去的指针步长是整个数组的长度   除了两种特殊情况外，都是指向数组中首元素的地址的指针  数组名—指针常量,指针的指向不可以修改  如果将数组名传入到函数参数中,可以提高可读性,通常写:int arr [ ]  访问数组元素的时候,下表也可以是负数   2.如何定义数组的指针 先定义出数组的类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c语言提高day04">
 <meta property="og:url" content="https://www.geekboys.cn/2021/05/04/c%E8%AF%AD%E8%A8%80%E6%8F%90%E9%AB%98day04/index.html">
 <meta property="og:site_name" content="莫邪居士的博客">
-<meta property="og:description" content="须知少时凌云志,曾许人间第一流">
+<meta property="og:description" content="1.一维数组名称 本身并不是一个指针  有两种特殊的情况  对数组名进行sizeof 对数组名称取地址,过去的指针步长是整个数组的长度   除了两种特殊情况外，都是指向数组中首元素的地址的指针  数组名—指针常量,指针的指向不可以修改  如果将数组名传入到函数参数中,可以提高可读性,通常写:int arr [ ]  访问数组元素的时候,下表也可以是负数   2.如何定义数组的指针 先定义出数组的类">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-05-04T14:01:00.000Z">
-<meta property="article:modified_time" content="2021-05-04T14:01:42.663Z">
+<meta property="article:modified_time" content="2021-05-30T09:15:54.950Z">
 <meta property="article:author" content="geekboys">
 <meta name="twitter:card" content="summary">
 
@@ -289,8 +289,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-05-04T22:01:42+08:00">
-                2021-05-04
+              <time title="更新于" itemprop="dateModified" datetime="2021-05-30T17:15:54+08:00">
+                2021-05-30
               </time>
             
           </span>
@@ -345,7 +345,59 @@
       
 
       
-        
+        <h4 id="1-一维数组名称"><a href="#1-一维数组名称" class="headerlink" title="1.一维数组名称"></a>1.一维数组名称</h4><ul>
+<li><p>本身并不是一个指针</p>
+</li>
+<li><p>有两种特殊的情况</p>
+<ul>
+<li>对数组名进行sizeof</li>
+<li>对数组名称取地址,过去的指针步长是整个数组的长度</li>
+</ul>
+</li>
+<li><p>除了两种特殊情况外，都是指向数组中首元素的地址的指针</p>
+</li>
+<li><p>数组名—指针常量,指针的指向不可以修改</p>
+</li>
+<li><p>如果将数组名传入到函数参数中,可以提高可读性,通常写:int arr [ ]</p>
+</li>
+<li><p>访问数组元素的时候,下表也可以是负数</p>
+</li>
+</ul>
+<h4 id="2-如何定义数组的指针"><a href="#2-如何定义数组的指针" class="headerlink" title="2.如何定义数组的指针"></a>2.如何定义数组的指针</h4><ul>
+<li>先定义出数组的类型,在通过类型创建数组指针<ul>
+<li>typedef int(ARRAY_TYPE)[4];</li>
+</ul>
+</li>
+<li>先定义出数组指针的类型,再创建数组指针变量<ul>
+<li>typedef int(*ARRAY_TYPE)[4];</li>
+</ul>
+</li>
+<li>直接创建数组指针变量<ul>
+<li>int (*pARR)[5] = &arr;</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-二维数组名称"><a href="#3-二维数组名称" class="headerlink" title="3.二维数组名称"></a>3.二维数组名称</h4><ul>
+<li><p>除了两种情况以外,都是指向第一个一维数组的指针</p>
+</li>
+<li><p>两种特殊的情况</p>
+<ul>
+<li>sizeof统计整个二维数组的长度</li>
+<li>对数组名称取地址  int(*p2)[3] [3] = &arr;</li>
+</ul>
+</li>
+<li><p>二维数组做函数参数传递方式</p>
+<ul>
+<li><p>void printArray( int p[][3] , int row, int col)</p>
+</li>
+<li><p>void printArray(int p[3][3], int row, int col)  可读性高</p>
+</li>
+<li><p>void printArray( int(*p)[3] , int row ,int col)</p>
+</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     
@@ -480,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -546,6 +607,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E5%90%8D%E7%A7%B0"><span class="nav-number">1.</span> <span class="nav-text">1.一维数组名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84%E7%9A%84%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">2.如何定义数组的指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%90%8D%E7%A7%B0"><span class="nav-number">3.</span> <span class="nav-text">3.二维数组名称</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
