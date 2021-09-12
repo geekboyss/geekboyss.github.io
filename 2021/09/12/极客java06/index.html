@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.方法和属性的可见修饰符 可见修饰符用在类，成员方法，构造方法，静态方法和属性上，其可见性的范围时一样的 public :全局可见 缺省：当前包可见 private：当前类可见   理解访问修饰符：不只是为了限制不让人用，更为了保护数据，成员变量应该是private，不需要让外部使用的方法都是private的 有些时候会把构造方法定义成private，然后使用静态方法调用构造方法，这样的好处时，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极客java06">
+<meta property="og:url" content="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java06/index.html">
+<meta property="og:site_name" content="莫邪居士的博客">
+<meta property="og:description" content="1.方法和属性的可见修饰符 可见修饰符用在类，成员方法，构造方法，静态方法和属性上，其可见性的范围时一样的 public :全局可见 缺省：当前包可见 private：当前类可见   理解访问修饰符：不只是为了限制不让人用，更为了保护数据，成员变量应该是private，不需要让外部使用的方法都是private的 有些时候会把构造方法定义成private，然后使用静态方法调用构造方法，这样的好处时，">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-09-12T14:09:00.000Z">
+<meta property="article:modified_time" content="2021-09-12T14:15:18.968Z">
+<meta property="article:author" content="geekboys">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.geekboys.cn/2021/09/12/极客java06/"/>
+
+
+
+
+
+  <title>极客java06 | 莫邪居士的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/geekboyss" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">莫邪居士的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">莫邪居士的博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/aut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫邪居士的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">极客java06</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-12T22:09:00+08:00">
+                2021-09-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-12T22:15:18+08:00">
+                2021-09-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-方法和属性的可见修饰符"><a href="#1-方法和属性的可见修饰符" class="headerlink" title="1.方法和属性的可见修饰符"></a>1.方法和属性的可见修饰符</h4><ul>
+<li>可见修饰符用在类，成员方法，构造方法，静态方法和属性上，其可见性的范围时一样的<ul>
+<li>public :全局可见</li>
+<li>缺省：当前包可见</li>
+<li>private：当前类可见</li>
+</ul>
+</li>
+<li>理解访问修饰符：不只是为了限制不让人用，更为了保护数据，成员变量应该是private，不需要让外部使用的方法都是private的</li>
+<li>有些时候会把构造方法定义成private，然后使用静态方法调用构造方法，这样的好处时，可以通过代码检查每个属性值是否合法</li>
+<li>public的方法类似一种约定，外面的代码可以使用就不能乱改</li>
+<li>对于private方法，外面调不到，修改不会影响外面</li>
+<li>非public 类文件名可以与类名不同</li>
+</ul>
+<h4 id="2-重新认识老朋友Math"><a href="#2-重新认识老朋友Math" class="headerlink" title="2.重新认识老朋友Math"></a>2.重新认识老朋友Math</h4><ul>
+<li>math.random()生成随机数</li>
+<li>math.abs取整数</li>
+<li>math.round取最近的的整数</li>
+</ul>
+<h4 id="3-重新认识老朋友Scanner"><a href="#3-重新认识老朋友Scanner" class="headerlink" title="3.重新认识老朋友Scanner"></a>3.重新认识老朋友Scanner</h4><ul>
+<li>priveat不仅仅时限制使用，而是为了提供规范的方法</li>
+</ul>
+<h5 id="BigInteger-很大的数"><a href="#BigInteger-很大的数" class="headerlink" title="BigInteger:很大的数"></a>BigInteger:很大的数</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">BigInteger bigInteger = scanner.nextBigInteger();</span><br><span class="line">bigInteger.add(值)</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-最熟悉的陌生人，String上"><a href="#4-最熟悉的陌生人，String上" class="headerlink" title="4.最熟悉的陌生人，String上"></a>4.最熟悉的陌生人，String上</h4><ul>
+<li>String的length是一个方法，不是属性</li>
+<li>.toUpperCase：转化为大写</li>
+<li>.toLowerCase：转化为小写</li>
+<li>.charAt(index)：找到index位置的字母</li>
+<li>.substring(3):截取索引三之后的字符串（包括3）</li>
+<li>.sbustring(1,3):截取1到3（不包括3）</li>
+<li>char[] char = content.toCharArray：转换为字符数组</li>
+<li>String[] s = chotent.split(“ _ “):将content字符串按照_分割开来</li>
+<li>int index = content.indexOf(“ _  “):寻找content字符串中第一个_的索引</li>
+<li>int index =  content.lastIndexOf(“ _ “):从后向前找</li>
+<li>content.contains(“apple”):寻找字符串content中是否含有apple</li>
+<li>content.startsWith(“Orange”):判断字符串是不是以Orange开头</li>
+<li>content.endsWith(“Apple”):判断字符串是不是以Apple结尾</li>
+<li>content.euals(content2):判断两个字符串是否相等（不区分大小写）</li>
+<li>content.equalsIgnoreCases(content2):判断两个字符串是否相等（区分大小写）</li>
+<li>content.trim() ：处理掉字符串开头和结尾的空格</li>
+<li>content.replace(“a”,”!”):用！替换a</li>
+</ul>
+<h4 id="6-main方法和System类"><a href="#6-main方法和System类" class="headerlink" title="6.main方法和System类"></a>6.main方法和System类</h4><h5 id="main方法"><a href="#main方法" class="headerlink" title="main方法"></a>main方法</h5><ul>
+<li>main方法只是一个静态的，有String[] 参数，没有返回值的方法而已</li>
+<li>特殊之处在与是程序的入口</li>
+<li>给main方法传递参数</li>
+<li>自己试着调用main方法</li>
+</ul>
+<h5 id="System类"><a href="#System类" class="headerlink" title="System类"></a>System类</h5><ul>
+<li><p>system类中有很多系统相关的方法，最常用的就是in和out</p>
+</li>
+<li><p>另一个最常用的就是读取时间</p>
+<ul>
+<li>System.currentTimeMillis():获取当前时间（毫秒）返回值为Long</li>
+<li>System.nanoTime():获取当前时间（纳秒）返回值同样为long</li>
+</ul>
+</li>
+<li><p>通常在一段代码的开始和结束获取的时间相减就得到了代码运行时间</p>
+</li>
+</ul>
+<h4 id="7-String类的好兄弟"><a href="#7-String类的好兄弟" class="headerlink" title="7.String类的好兄弟"></a>7.String类的好兄弟</h4><ul>
+<li>StringBuilder是一个非常方便用来拼接和处理字符串的类，和String不同的是它可变</li>
+<li>对StringBuilder的操作方法，都会返回this自引用，这样就可以一直.下去</li>
+</ul>
+<h5 id="StringBuilder的常用方法"><a href="#StringBuilder的常用方法" class="headerlink" title="StringBuilder的常用方法"></a>StringBuilder的常用方法</h5><ul>
+<li>append()方法:向字符串追加内容  </li>
+<li>reverse()方法:反转字符串</li>
+<li>toString()方法:转回String</li>
+<li>delete(0,4):删除索引为4到4</li>
+<li>insert(3,”LLL”):向索引为3的位置插入”LLL”,后面的向后移动</li>
+</ul>
+<h4 id="8-继承"><a href="#8-继承" class="headerlink" title="8.继承"></a>8.继承</h4><ul>
+<li>子类继承了父类方法和属性</li>
+<li>使用子类的引用可以调用父类的共有方法  </li>
+<li>使用子类的引用可以访问父类的共有属性</li>
+<li>就好像子类的引用可以一物二用既可以做子类的引用，又可以做父类的引用</li>
+</ul>
+<h4 id="9-子类对象中藏着一个父类对象"><a href="#9-子类对象中藏着一个父类对象" class="headerlink" title="9.子类对象中藏着一个父类对象"></a>9.子类对象中藏着一个父类对象</h4><ul>
+<li>除了继承，我们也可以再Phone中添加一个商品的引用</li>
+<li>这样我们也实现了一个与继承类似的功能</li>
+<li>这样在自己类里，使用别的类的关系我们叫做”has a”的关系，也称之为组合</li>
+<li>具体到我们这个例子，“Phone”中有一个商品，但是Phone本身并不是商品</li>
+</ul>
+<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><ul>
+<li><p>继承其实是一种”is a”的关系，也就是说，在你用类沟通的世界中，，子类是父类的一种特殊类别</p>
+</li>
+<li><p>组合还是组合 ，是在设计java类的时候不得不面对的问题</p>
+</li>
+<li><p>XX到底是YY的一种，还是只是组合了YY</p>
+</li>
+<li><p>在组合的条件下怎么限制一次只能购买一个手机</p>
+<ul>
+<li>首先不能修改MerchandiseV2这个类</li>
+<li>其次这个类可能根本不受你的控制</li>
+<li>如果限制改为10个所有的代码都要修改</li>
+</ul>
+</li>
+<li><p>继承不是组合，继承不只是为了简单拿来父类的属性和方法</p>
+</li>
+<li><p>继承不是通过组合的方式来实现的，继承更像融合</p>
+</li>
+</ul>
+<h4 id="10-覆盖子类想要点不一样"><a href="#10-覆盖子类想要点不一样" class="headerlink" title="10.覆盖子类想要点不一样"></a>10.覆盖子类想要点不一样</h4><ul>
+<li>通过使用和父类方法签名一样，而且放回置也一样的方法，可以让子类fugaidiao父类的方法</li>
+<li>也就是说，子类并不是只能把父类方法拿过来，而且可以通过覆盖来替换其中不合适的方法</li>
+<li>属性是联动的，可能有特殊意义3</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持是我最大的动力！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/w.png" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/z.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    geekboys
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java06/" title="极客java06">https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java06/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/12/%E6%9E%81%E5%AE%A2java04/" rel="next" title="极客java04">
+                <i class="fa fa-chevron-left"></i> 极客java04
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/12/%E6%9E%81%E5%AE%A2java-8/" rel="prev" title="极客java08">
+                极客java08 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/aut.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/geekboyss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%96%B9%E6%B3%95%E5%92%8C%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8F%AF%E8%A7%81%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">1.方法和属性的可见修饰符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E8%80%81%E6%9C%8B%E5%8F%8BMath"><span class="nav-number">2.</span> <span class="nav-text">2.重新认识老朋友Math</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86%E8%80%81%E6%9C%8B%E5%8F%8BScanner"><span class="nav-number">3.</span> <span class="nav-text">3.重新认识老朋友Scanner</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#BigInteger-%E5%BE%88%E5%A4%A7%E7%9A%84%E6%95%B0"><span class="nav-number">3.1.</span> <span class="nav-text">BigInteger:很大的数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%9C%80%E7%86%9F%E6%82%89%E7%9A%84%E9%99%8C%E7%94%9F%E4%BA%BA%EF%BC%8CString%E4%B8%8A"><span class="nav-number">4.</span> <span class="nav-text">4.最熟悉的陌生人，String上</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-main%E6%96%B9%E6%B3%95%E5%92%8CSystem%E7%B1%BB"><span class="nav-number">5.</span> <span class="nav-text">6.main方法和System类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#main%E6%96%B9%E6%B3%95"><span class="nav-number">5.1.</span> <span class="nav-text">main方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#System%E7%B1%BB"><span class="nav-number">5.2.</span> <span class="nav-text">System类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-String%E7%B1%BB%E7%9A%84%E5%A5%BD%E5%85%84%E5%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">7.String类的好兄弟</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#StringBuilder%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">6.1.</span> <span class="nav-text">StringBuilder的常用方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E7%BB%A7%E6%89%BF"><span class="nav-number">7.</span> <span class="nav-text">8.继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E5%AD%90%E7%B1%BB%E5%AF%B9%E8%B1%A1%E4%B8%AD%E8%97%8F%E7%9D%80%E4%B8%80%E4%B8%AA%E7%88%B6%E7%B1%BB%E5%AF%B9%E8%B1%A1"><span class="nav-number">8.</span> <span class="nav-text">9.子类对象中藏着一个父类对象</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-number">8.1.</span> <span class="nav-text">继承</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E8%A6%86%E7%9B%96%E5%AD%90%E7%B1%BB%E6%83%B3%E8%A6%81%E7%82%B9%E4%B8%8D%E4%B8%80%E6%A0%B7"><span class="nav-number">9.</span> <span class="nav-text">10.覆盖子类想要点不一样</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekboys</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

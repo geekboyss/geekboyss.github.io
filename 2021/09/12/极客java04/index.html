@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.打造一个小超市 java就是用类来描述世界，用类的实例（对象）让世界运转 各种操作数据的代码太乱了咋办、  2.IntelliJ调试程序 设置断点，dubug调试模式运行 断点：让程序在调试模式停在某一行  用断点调试程序 查看变量的值，看内部成员的值 step over：执行一行 step out：继续执行到下一个断点 ，或程序结束 step Into:进入被调用方法内部 执行任意代码：Ev">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极客java04">
+<meta property="og:url" content="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java04/index.html">
+<meta property="og:site_name" content="莫邪居士的博客">
+<meta property="og:description" content="1.打造一个小超市 java就是用类来描述世界，用类的实例（对象）让世界运转 各种操作数据的代码太乱了咋办、  2.IntelliJ调试程序 设置断点，dubug调试模式运行 断点：让程序在调试模式停在某一行  用断点调试程序 查看变量的值，看内部成员的值 step over：执行一行 step out：继续执行到下一个断点 ，或程序结束 step Into:进入被调用方法内部 执行任意代码：Ev">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-09-12T14:08:00.000Z">
+<meta property="article:modified_time" content="2021-09-12T14:15:43.591Z">
+<meta property="article:author" content="geekboys">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.geekboys.cn/2021/09/12/极客java04/"/>
+
+
+
+
+
+  <title>极客java04 | 莫邪居士的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/geekboyss" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">莫邪居士的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">莫邪居士的博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/aut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫邪居士的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">极客java04</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-12T22:08:00+08:00">
+                2021-09-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-12T22:15:43+08:00">
+                2021-09-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-打造一个小超市"><a href="#1-打造一个小超市" class="headerlink" title="1.打造一个小超市"></a>1.打造一个小超市</h4><ul>
+<li>java就是用类来描述世界，用类的实例（对象）让世界运转</li>
+<li>各种操作数据的代码太乱了咋办、</li>
+</ul>
+<h4 id="2-IntelliJ调试程序"><a href="#2-IntelliJ调试程序" class="headerlink" title="2.IntelliJ调试程序"></a>2.IntelliJ调试程序</h4><ul>
+<li>设置断点，dubug调试模式运行</li>
+<li>断点：让程序在调试模式停在某一行</li>
+</ul>
+<h5 id="用断点调试程序"><a href="#用断点调试程序" class="headerlink" title="用断点调试程序"></a>用断点调试程序</h5><ul>
+<li>查看变量的值，看内部成员的值</li>
+<li>step over：执行一行</li>
+<li>step out：继续执行到下一个断点 ，或程序结束</li>
+<li>step Into:进入被调用方法内部</li>
+<li>执行任意代码：Evaluate Expression</li>
+<li>条件断点：只有满足条件时，程序才会在该断点停住</li>
+</ul>
+<h4 id="3-让对象有方法"><a href="#3-让对象有方法" class="headerlink" title="3.让对象有方法"></a>3.让对象有方法</h4><h6 id="方法的组成部分"><a href="#方法的组成部分" class="headerlink" title="方法的组成部分"></a>方法的组成部分</h6><ul>
+<li>访问修饰符</li>
+<li>返回值类型：无返回值用void表示，void 为关键字</li>
+<li>方法名：任意合法标识符均可</li>
+<li>参数列表</li>
+<li>方法体</li>
+<li>体内部的变量叫做局部变量</li>
+</ul>
+<h5 id="方法的调用"><a href="#方法的调用" class="headerlink" title="方法的调用"></a>方法的调用</h5><ul>
+<li>通过引用的点操作符，可以调用对象的方法</li>
+<li>方法的调用要有括号，即使没有参数</li>
+</ul>
+<h6 id="方法可以使用的数据：对象的成员变量"><a href="#方法可以使用的数据：对象的成员变量" class="headerlink" title="方法可以使用的数据：对象的成员变量"></a>方法可以使用的数据：对象的成员变量</h6><h4 id="4-返回值"><a href="#4-返回值" class="headerlink" title="4.返回值"></a>4.返回值</h4><ul>
+<li>在方法的定义中指定方法的返回值类型</li>
+<li>java种一个方法只能由一个返回值，如果不需要用void表示</li>
+<li>如果定义了返回值，必须使用return。</li>
+<li>返回值必须要能够用来给返回值类型的变量赋值</li>
+<li>return语句必须是所在代码块的最后一个语句</li>
+<li>一个方法可以有多个返回语句</li>
+<li>返回值如果是基 本类型，则要完全相同，或者符合自动转换规则</li>
+<li>如果不符合规则，可以使用强制类型转换-</li>
+</ul>
+<h4 id="5-参数"><a href="#5-参数" class="headerlink" title="5.参数"></a>5.参数</h4><ul>
+<li>参数定义在方法名字后面的括号中</li>
+<li>参数定义的规范和变量一样,都是类型名加标识符</li>
+<li>方法体中的代码可以使用参数</li>
+<li>参数的值在调用方法的时候需要给出,(实际参数)</li>
+<li>对应的,方法定义中的参数叫(形式参数)</li>
+<li>参数可以是任何类型,包括自定义类型</li>
+</ul>
+<h4 id="6-参数和返回值是怎么传递的"><a href="#6-参数和返回值是怎么传递的" class="headerlink" title="6.参数和返回值是怎么传递的"></a>6.参数和返回值是怎么传递的</h4><ul>
+<li>参数和方法中的局部变量可以认为是一个东西，只是在方法调用前，会用实参给形参赋值</li>
+<li>发生在代码块中的，就留在代码块里</li>
+<li>方法执行完毕，参数和方法的局部变量就会被删除回收</li>
+<li>调用一个有返回值的方法时，就像在访问一个成员变量</li>
+<li>参数的传递，其实就是赋值</li>
+<li>参数本身可以是一个表达式，只要类型匹配就可</li>
+<li>方法里面的代码不能改变实参的值  </li>
+<li>可以把有返回值的方法，当作一个成员变量</li>
+<li>使用返回值，就好像在使用一个成员变量</li>
+</ul>
+<h4 id="7-分清参数，局部变量，和实例的地盘"><a href="#7-分清参数，局部变量，和实例的地盘" class="headerlink" title="7.分清参数，局部变量，和实例的地盘"></a>7.分清参数，局部变量，和实例的地盘</h4><ul>
+<li>局部变量就是我们之前说的变量，是在方法体中创建的变量</li>
+<li>参数和局部变量都是演草纸，方法执行完就清楚了</li>
+<li>对象是实例，不是变量，对象创建出来后，被放在一起，类似于公告板的地方</li>
+<li>方法里创建的对象是不会随着方法结束被清楚的，所以对象的地盘不受限制</li>
+<li>只要有引用指向对象，就可以通过这个引用来访问</li>
+<li>可以通过指向同一个对象的引用，操作这个对象里的属性</li>
+</ul>
+<h4 id="8-隐藏的this自引用"><a href="#8-隐藏的this自引用" class="headerlink" title="8.隐藏的this自引用"></a>8.隐藏的this自引用</h4><ul>
+<li><p>方法里隐藏着一个this自引用，指向调用这个方法的对象</p>
+</li>
+<li><p>使用一个对象调用方法，也叫做在这个对象上调用方法，因为方法可以访问这个对象的值</p>
+</li>
+<li><p>访问一个成员变量的完整形态是thiis.成员变量</p>
+</li>
+</ul>
+<h4 id="9-理解方法"><a href="#9-理解方法" class="headerlink" title="9.理解方法"></a>9.理解方法</h4><ul>
+<li>类中如果不定义方法，只定义成员变量，那么一个类就没有了功能，只是简单的数据的封装。创建一个对象之后，所有对数据的操作，都要在每个用到数据的地方写代码</li>
+<li>类通过成员变量和方法描述世界。成员变量是描述一类事物的属性，是数据；方法是描述一类事物的行为和功能，是对数据的操作，比如describe方法</li>
+<li>方法中的代码可以通过操作一个对象的成员变量，完成一个功能</li>
+<li>方法是java中代码执行单元，是代码的载体。所有代码，都必须属于某一种方法</li>
+<li>方法就是一串语句，加上数据输入this自引用和参数，执行后得到一个返回值。所以使用一个对象调用一个方法，可以叫做调用对象的方法。也可以叫做，在这个对象上调用方法</li>
+<li>方法不是对象的一部分，是类的一部分。每个对象可以给成员变量赋不同的值，，但是无法让方法有不同大的行为，同理，无论在一个类中有多少方法，都不会影响创建一个对象所占用的内存</li>
+</ul>
+<h5 id="方法的特殊之处（和代码块相比）"><a href="#方法的特殊之处（和代码块相比）" class="headerlink" title="方法的特殊之处（和代码块相比）"></a>方法的特殊之处（和代码块相比）</h5><ul>
+<li>有名字</li>
+<li>有返回值</li>
+<li>有参数</li>
+<li>有this自引用</li>
+<li>明确属于一个类</li>
+<li>可以（只能）通过对象引用来调用</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持是我最大的动力！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/w.png" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/z.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    geekboys
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java04/" title="极客java04">https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java04/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/12/%E6%9E%81%E5%AE%A2java05/" rel="next" title="极客java05">
+                <i class="fa fa-chevron-left"></i> 极客java05
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/12/%E6%9E%81%E5%AE%A2java06/" rel="prev" title="极客java06">
+                极客java06 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/aut.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/geekboyss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%89%93%E9%80%A0%E4%B8%80%E4%B8%AA%E5%B0%8F%E8%B6%85%E5%B8%82"><span class="nav-number">1.</span> <span class="nav-text">1.打造一个小超市</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-IntelliJ%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">2.IntelliJ调试程序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%94%A8%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.1.</span> <span class="nav-text">用断点调试程序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AE%A9%E5%AF%B9%E8%B1%A1%E6%9C%89%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">3.让对象有方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">3.0.1.</span> <span class="nav-text">方法的组成部分</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E8%B0%83%E7%94%A8"><span class="nav-number">3.1.</span> <span class="nav-text">方法的调用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%EF%BC%9A%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="nav-number">3.1.1.</span> <span class="nav-text">方法可以使用的数据：对象的成员变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">4.返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%8F%82%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">5.参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%8F%82%E6%95%B0%E5%92%8C%E8%BF%94%E5%9B%9E%E5%80%BC%E6%98%AF%E6%80%8E%E4%B9%88%E4%BC%A0%E9%80%92%E7%9A%84"><span class="nav-number">6.</span> <span class="nav-text">6.参数和返回值是怎么传递的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%88%86%E6%B8%85%E5%8F%82%E6%95%B0%EF%BC%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%EF%BC%8C%E5%92%8C%E5%AE%9E%E4%BE%8B%E7%9A%84%E5%9C%B0%E7%9B%98"><span class="nav-number">7.</span> <span class="nav-text">7.分清参数，局部变量，和实例的地盘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E9%9A%90%E8%97%8F%E7%9A%84this%E8%87%AA%E5%BC%95%E7%94%A8"><span class="nav-number">8.</span> <span class="nav-text">8.隐藏的this自引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E7%90%86%E8%A7%A3%E6%96%B9%E6%B3%95"><span class="nav-number">9.</span> <span class="nav-text">9.理解方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E7%9A%84%E7%89%B9%E6%AE%8A%E4%B9%8B%E5%A4%84%EF%BC%88%E5%92%8C%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9B%B8%E6%AF%94%EF%BC%89"><span class="nav-number">9.1.</span> <span class="nav-text">方法的特殊之处（和代码块相比）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekboys</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

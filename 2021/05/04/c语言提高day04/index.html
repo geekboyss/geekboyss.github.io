@@ -87,7 +87,7 @@
 <meta property="og:description" content="1.一维数组名称 本身并不是一个指针  有两种特殊的情况  对数组名进行sizeof 对数组名称取地址,过去的指针步长是整个数组的长度   除了两种特殊情况外，都是指向数组中首元素的地址的指针  数组名—指针常量,指针的指向不可以修改  如果将数组名传入到函数参数中,可以提高可读性,通常写:int arr [ ]  访问数组元素的时候,下表也可以是负数   2.如何定义数组的指针 先定义出数组的类">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-05-04T14:01:00.000Z">
-<meta property="article:modified_time" content="2021-05-30T09:15:54.950Z">
+<meta property="article:modified_time" content="2021-06-05T15:10:19.359Z">
 <meta property="article:author" content="geekboys">
 <meta name="twitter:card" content="summary">
 
@@ -289,8 +289,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2021-05-30T17:15:54+08:00">
-                2021-05-30
+              <time title="更新于" itemprop="dateModified" datetime="2021-06-05T23:10:19+08:00">
+                2021-06-05
               </time>
             
           </span>
@@ -396,6 +396,37 @@
 </li>
 </ul>
 </li>
+<li><p>数组指针,指针数组的区别</p>
+<ul>
+<li>数组指针: 是一个指向数组的指针 ,int (*p)[10];</li>
+<li>指针数组:是一个存放指针的数组, int *p[10];</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-指针数组的排序"><a href="#4-指针数组的排序" class="headerlink" title="4.指针数组的排序"></a>4.指针数组的排序</h4><ul>
+<li><p>选择排序</p>
+<ul>
+<li>假设排序的规则从小到大</li>
+<li>先认定一个最小的小标为i,通过j= i + 1循环来找到真实最小值的下标</li>
+<li>判断认定的下标和真实的下标是否相等,如果不相等就交换两个元素</li>
+</ul>
+</li>
+<li><p>练习:对指针数据进行从大到小排序</p>
+</li>
+</ul>
+<h5 id="5-结构体的使用"><a href="#5-结构体的使用" class="headerlink" title="5.结构体的使用"></a>5.结构体的使用</h5><ul>
+<li>如果有使用typedef定义结构体,那么后面跟着的单词是类型的别名</li>
+<li>没有使用typedef,定义结构体,后面跟着的单词是一个结构体变量</li>
+<li>结构体数组<ul>
+<li>在栈上开辟</li>
+<li>在堆区开辟</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-结构体赋值问题"><a href="#6-结构体赋值问题" class="headerlink" title="6.结构体赋值问题"></a>6.结构体赋值问题</h4><ul>
+<li>系统提供的赋值操作是简单的值拷贝,逐字节拷贝-浅拷贝</li>
+<li>如果属性中有指向堆区的内同,在释放期间会导致堆区重复释放,并且还有内存泄漏</li>
+<li>解决方案:利用深拷贝:手动赋值</li>
 </ul>
 
       
@@ -561,7 +592,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -617,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E5%90%8D%E7%A7%B0"><span class="nav-number">1.</span> <span class="nav-text">1.一维数组名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84%E7%9A%84%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">2.如何定义数组的指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%90%8D%E7%A7%B0"><span class="nav-number">3.</span> <span class="nav-text">3.二维数组名称</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E5%90%8D%E7%A7%B0"><span class="nav-number">1.</span> <span class="nav-text">1.一维数组名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%95%B0%E7%BB%84%E7%9A%84%E6%8C%87%E9%92%88"><span class="nav-number">2.</span> <span class="nav-text">2.如何定义数组的指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%90%8D%E7%A7%B0"><span class="nav-number">3.</span> <span class="nav-text">3.二维数组名称</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">4.指针数组的排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">4.1.</span> <span class="nav-text">5.结构体的使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%BB%93%E6%9E%84%E4%BD%93%E8%B5%8B%E5%80%BC%E9%97%AE%E9%A2%98"><span class="nav-number">5.</span> <span class="nav-text">6.结构体赋值问题</span></a></li></ol></div>
             
 
           </div>

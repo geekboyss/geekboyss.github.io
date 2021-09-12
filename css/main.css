@@ -1950,7 +1950,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #be7cfc;
+  background: #09ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3248,4 +3248,11 @@ pre .javascript .function {
   .pagination {
     margin: 8px 0 0;
   }
+}
+body {
+  background-image: url("/images/background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
 }

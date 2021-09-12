@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="0.final修饰符(上) final修饰类:不可被继承  final修饰方法:不可被子类覆盖  final修饰变量:不可被赋值  构造方法不能用final修饰  用来修饰成员变量  可以在构造方法中赋值,或者直接在定义的时候赋值   用来修饰静态变量  可以在初始的时候赋值,或者在static块中赋值   final修饰方法  方法不可以被子类覆盖   final修饰形参  形参变量就不能被赋值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极客java08">
+<meta property="og:url" content="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java-8/index.html">
+<meta property="og:site_name" content="莫邪居士的博客">
+<meta property="og:description" content="0.final修饰符(上) final修饰类:不可被继承  final修饰方法:不可被子类覆盖  final修饰变量:不可被赋值  构造方法不能用final修饰  用来修饰成员变量  可以在构造方法中赋值,或者直接在定义的时候赋值   用来修饰静态变量  可以在初始的时候赋值,或者在static块中赋值   final修饰方法  方法不可以被子类覆盖   final修饰形参  形参变量就不能被赋值">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-09-12T14:10:00.000Z">
+<meta property="article:modified_time" content="2021-09-12T14:14:59.903Z">
+<meta property="article:author" content="geekboys">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.geekboys.cn/2021/09/12/极客java-8/"/>
+
+
+
+
+
+  <title>极客java08 | 莫邪居士的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/geekboyss" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">莫邪居士的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">莫邪居士的博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/aut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫邪居士的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">极客java08</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-12T22:10:00+08:00">
+                2021-09-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-12T22:14:59+08:00">
+                2021-09-12
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="0-final修饰符-上"><a href="#0-final修饰符-上" class="headerlink" title="0.final修饰符(上)"></a>0.final修饰符(上)</h4><ul>
+<li><p>final修饰类:不可被继承</p>
+</li>
+<li><p>final修饰方法:不可被子类覆盖</p>
+</li>
+<li><p>final修饰变量:不可被赋值</p>
+</li>
+<li><p>构造方法不能用final修饰</p>
+</li>
+<li><p>用来修饰成员变量</p>
+<ul>
+<li>可以在构造方法中赋值,或者直接在定义的时候赋值</li>
+</ul>
+</li>
+<li><p>用来修饰静态变量</p>
+<ul>
+<li>可以在初始的时候赋值,或者在static块中赋值</li>
+</ul>
+</li>
+<li><p>final修饰方法</p>
+<ul>
+<li>方法不可以被子类覆盖</li>
+</ul>
+</li>
+<li><p>final修饰形参</p>
+<ul>
+<li>形参变量就不能被赋值了</li>
+</ul>
+</li>
+<li><p>final修饰局部变量</p>
+<ul>
+<li>也是只能声明的时候就赋值,不能赋值两次</li>
+</ul>
+</li>
+</ul>
+<p>总结:final修饰变量必须要赋值,且只能赋值一次</p>
+<h4 id="1-final修饰符-下"><a href="#1-final修饰符-下" class="headerlink" title="1.final修饰符(下)"></a>1.final修饰符(下)</h4><ul>
+<li>当我们时用final修饰引用的时候</li>
+<li>引用指向对象不可以改变</li>
+<li>但是对象的内容时可以改变的</li>
+</ul>
+<h4 id="2-继承里的静态方法"><a href="#2-继承里的静态方法" class="headerlink" title="2.继承里的静态方法"></a>2.继承里的静态方法</h4><ul>
+<li>如果子类静态方法签名与父类相同的话，返回值必须相同</li>
+</ul>
+<h3 id="3-for语句的另一种写法"><a href="#3-for语句的另一种写法" class="headerlink" title="3.for语句的另一种写法"></a>3.for语句的另一种写法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getBig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> max = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (MerchandiseV2 m:merchandise) &#123;</span><br><span class="line">            <span class="keyword">if</span> (m.getpPrice() &gt; max) &#123;</span><br><span class="line">                max = m.getpPrice();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-万类之祖：Object类"><a href="#4-万类之祖：Object类" class="headerlink" title="4.万类之祖：Object类"></a>4.万类之祖：Object类</h4><p>所有的类，都直接或者间接继承自Object类</p>
+<ul>
+<li><p>常见的方法</p>
+<ul>
+<li>toString()</li>
+<li>getClass()</li>
+<li>hashCode()</li>
+</ul>
+</li>
+<li><p>native代表会调用当前平台的方法</p>
+</li>
+</ul>
+<h4 id="5-hashCode和equals方法-上"><a href="#5-hashCode和equals方法-上" class="headerlink" title="5.hashCode和equals方法(上)"></a>5.hashCode和equals方法(上)</h4><ul>
+<li>hashCode可以翻译为哈希码，或者散列码，应该是表示对象的特征值的int整数</li>
+<li>equals方法应该用来判断两个对象从 逻辑上是否相等</li>
+</ul>
+<h4 id="6-hashCode和equals方法-下"><a href="#6-hashCode和equals方法-下" class="headerlink" title="6.hashCode和equals方法(下)"></a>6.hashCode和equals方法(下)</h4><ul>
+<li>对于String类来说，编译器会对其进行特殊的优化</li>
+<li>如果两个String比较短，且 内容相同则java会使用同一个对象</li>
+<li>如果内容很+</li>
+<li>长就会打破限制</li>
+</ul>
+<h4 id="7-toString方法"><a href="#7-toString方法" class="headerlink" title="7.toString方法"></a>7.toString方法</h4><ul>
+<li>可以使用ide的功能自动生成toString的方法</li>
+<li>人一个java对象都可以调用toString方法</li>
+</ul>
+<h4 id="8-初探Class类"><a href="#8-初探Class类" class="headerlink" title="8.初探Class类"></a>8.初探Class类</h4><ul>
+<li><p>Class是代表类的类，每个Class类的实例，都代表了一个类</p>
+</li>
+<li><p>通过一个类的Class实例，可以获取一个类所有的信息包括成员变量方法等</p>
+</li>
+<li><h6 id="动态参数"><a href="#动态参数" class="headerlink" title="动态参数"></a>动态参数</h6><ul>
+<li>(String… args)</li>
+<li>必须放在最后一个参数的位置</li>
+</ul>
+</li>
+<li><p>常见的方法</p>
+<ul>
+<li>clazz.getField(“count”);  可以获得这个类中的一个成员变量</li>
+<li>clazz.getMethod(“equals”,Object.class); 可以获这个类中的一个方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="9-初探反射"><a href="#9-初探反射" class="headerlink" title="9.初探反射"></a>9.初探反射</h4><ul>
+<li><p>使用反射可以访问属性  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Field countField = clazz.getField(<span class="string">&quot;count&quot;</span>);</span><br><span class="line">System.out.println(countField.get(merchandise));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用反射可可以访问方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Method decMethod = clazz.getMethod(<span class="string">&quot;des&quot;</span>);</span><br><span class="line">decMethod.invoke(merchandise);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用反射可以访问静态方法和属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Field staticField = clazz.getField(<span class="string">&quot;Static_Merber&quot;</span>);</span><br><span class="line">System.out.println(staticField.get(<span class="keyword">null</span>));</span><br></pre></td></tr></table></figure>
+
+<p>静态的方法也是类似，在对象的位置写null即可</p>
+</li>
+<li><p>使用反射可以访问private方法和属性</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Field countField = clazz.getDeclaredField(<span class="string">&quot;count&quot;</span>);</span><br><span class="line">countField.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">System.out.println(countField.get(merchandise));</span><br><span class="line">countField.set(merchandise,<span class="number">999</span>);</span><br><span class="line">System.out.println(countField.get(merchandise));</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持是我最大的动力！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/w.png" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/z.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    geekboys
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java-8/" title="极客java08">https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java-8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/12/%E6%9E%81%E5%AE%A2java06/" rel="next" title="极客java06">
+                <i class="fa fa-chevron-left"></i> 极客java06
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/12/%E6%9E%81%E5%AE%A2java07/" rel="prev" title="极客java07">
+                极客java07 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/aut.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/geekboyss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-final%E4%BF%AE%E9%A5%B0%E7%AC%A6-%E4%B8%8A"><span class="nav-number">1.</span> <span class="nav-text">0.final修饰符(上)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-final%E4%BF%AE%E9%A5%B0%E7%AC%A6-%E4%B8%8B"><span class="nav-number">2.</span> <span class="nav-text">1.final修饰符(下)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%A7%E6%89%BF%E9%87%8C%E7%9A%84%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">2.继承里的静态方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-for%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95"><span class="nav-number"></span> <span class="nav-text">3.for语句的另一种写法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%B8%87%E7%B1%BB%E4%B9%8B%E7%A5%96%EF%BC%9AObject%E7%B1%BB"><span class="nav-number">1.</span> <span class="nav-text">4.万类之祖：Object类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-hashCode%E5%92%8Cequals%E6%96%B9%E6%B3%95-%E4%B8%8A"><span class="nav-number">2.</span> <span class="nav-text">5.hashCode和equals方法(上)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-hashCode%E5%92%8Cequals%E6%96%B9%E6%B3%95-%E4%B8%8B"><span class="nav-number">3.</span> <span class="nav-text">6.hashCode和equals方法(下)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-toString%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">7.toString方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E5%88%9D%E6%8E%A2Class%E7%B1%BB"><span class="nav-number">5.</span> <span class="nav-text">8.初探Class类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8F%82%E6%95%B0"><span class="nav-number">5.0.1.</span> <span class="nav-text">动态参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E5%88%9D%E6%8E%A2%E5%8F%8D%E5%B0%84"><span class="nav-number">6.</span> <span class="nav-text">9.初探反射</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekboys</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
