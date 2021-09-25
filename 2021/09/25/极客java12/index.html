@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.Iterator接口 Iterable接口：实现这个接口就可以支持forEach循环  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极客java12">
+<meta property="og:url" content="https://www.geekboys.cn/2021/09/25/%E6%9E%81%E5%AE%A2java12/index.html">
+<meta property="og:site_name" content="莫邪居士的博客">
+<meta property="og:description" content="1.Iterator接口 Iterable接口：实现这个接口就可以支持forEach循环  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818">
+<meta property="og:locale">
+<meta property="article:published_time" content="2021-09-25T13:01:00.000Z">
+<meta property="article:modified_time" content="2021-09-25T13:02:50.520Z">
+<meta property="article:author" content="geekboys">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.geekboys.cn/2021/09/25/极客java12/"/>
+
+
+
+
+
+  <title>极客java12 | 莫邪居士的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a target="_blank" rel="noopener" href="https://github.com/geekboyss" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">莫邪居士的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">莫邪居士的博客</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.geekboys.cn/2021/09/25/%E6%9E%81%E5%AE%A2java12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/aut.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="莫邪居士的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">极客java12</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-09-25T21:01:00+08:00">
+                2021-09-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-09-25T21:02:50+08:00">
+                2021-09-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="1-Iterator接口"><a href="#1-Iterator接口" class="headerlink" title="1.Iterator接口"></a>1.Iterator接口</h4><ul>
+<li>Iterable接口：实现这个接口就可以支持forEach循环</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys.learnlist.mylist;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyArrayList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object[] elements;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> curr;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.elements = <span class="keyword">new</span> Object[<span class="number">16</span>];</span><br><span class="line">        curr =<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> curr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> curr == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Object ele : elements) &#123;</span><br><span class="line">            <span class="keyword">if</span> (Objects.equals(ele,o)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// TODO 实现iterable接口里定义的iterator接口</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Iterator&lt;&gt;() &#123;</span><br><span class="line">            <span class="keyword">int</span> pointer = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> pointer &lt; size();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> T <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> (T) elements[pointer++];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object[] toArray() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Object[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Object[] toArray(Object[] a) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Object[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        curr = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &gt; curr || index &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">&quot;Out of bound&quot;</span>+curr+<span class="string">&quot; for &quot;</span> + index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> elements[index];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (curr == elements.length-<span class="number">1</span>) &#123;</span><br><span class="line">            Object[] temp = <span class="keyword">new</span> Object[elements.length * <span class="number">2</span>];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; elements.length;i++) &#123;</span><br><span class="line">                temp[i] = elements[i];</span><br><span class="line">            &#125;</span><br><span class="line">            elements = temp;</span><br><span class="line">        &#125;elements[curr] = o;</span><br><span class="line">        curr++;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Map：key和value的映射"><a href="#2-Map：key和value的映射" class="headerlink" title="2.Map：key和value的映射"></a>2.Map：key和value的映射</h4><ul>
+<li>Map和List一样，是一种最基础的数据结构，它描述的是key-value一一对应的数据结构，每种高级语言都有Map的定义和实现</li>
+<li>使用自己写的类作为key，必须保证hashCode和equals方法实现的妥妥的，而且一定是不可变的。如果作为key的对象是可以改变的<ul>
+<li>put方法就是向里面增加一个key和value的</li>
+<li>containsKey检查里面有没有这个key</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys.learnmap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LearnMapAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, String&gt; map = createMap(<span class="number">99</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Map中的元素个数为:&quot;</span> + map.size());</span><br><span class="line">        <span class="comment">// TODO 通过get方法,得到传递的key对应的value值</span></span><br><span class="line">        <span class="comment">// TODO 注意get方法没有使用范型,它的类型是Object</span></span><br><span class="line">        System.out.println(map.get(<span class="string">&quot;key20&quot;</span>));</span><br><span class="line">        <span class="comment">// TODO 如果没有key,或者key的值就是null,那么返回null</span></span><br><span class="line">        System.out.println(map.get(<span class="keyword">new</span> Object()));</span><br><span class="line">        System.out.println(map.get(<span class="string">&quot;key999&quot;</span>));</span><br><span class="line">        <span class="comment">// TODO 注意不是每种Map的实现都允许key或者value为null</span></span><br><span class="line">        map.put(<span class="keyword">null</span>, <span class="string">&quot;value of null key&quot;</span>);</span><br><span class="line">        map.put(<span class="string">&quot;testnull&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;null key : &quot;</span> + map.get(<span class="keyword">null</span>));</span><br><span class="line">        System.out.println(<span class="string">&quot;null value : &quot;</span> + map.get(<span class="string">&quot;testnull&quot;</span>));</span><br><span class="line">        <span class="comment">// TODO 注意Map是不支持key重复的,value重复是可以的</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO 删除key</span></span><br><span class="line">        System.out.println(<span class="string">&quot;--------删除key--------&quot;</span>);</span><br><span class="line"></span><br><span class="line">        String keyToRemove = <span class="string">&quot;key9&quot;</span>;</span><br><span class="line">        System.out.println(keyToRemove + <span class="string">&quot;对应的值为&quot;</span> + map.get(keyToRemove));</span><br><span class="line">        map.remove(keyToRemove);</span><br><span class="line">        System.out.println(<span class="string">&quot;执行删除操作之后 &quot;</span> + keyToRemove + <span class="string">&quot;对应的值为&quot;</span> + map.get(keyToRemove));</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;--------遍历key和value--------&quot;</span>);</span><br><span class="line">        <span class="comment">// TODO 通过Entry类遍历Map</span></span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;String,String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;key为:&quot;</span>+entry.getKey()+<span class="string">&quot;value为:&quot;</span> + entry.getValue());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;------遍历key-------&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (String key : map.keySet()) &#123;</span><br><span class="line">            System.out.println(key);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;------遍历value-------&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (String value : map.values()) &#123;</span><br><span class="line">            System.out.println(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Map&lt;String, String&gt; <span class="title">createMap</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, String&gt; ret = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            ret.put(<span class="string">&quot;key&quot;</span> + i, String.valueOf(Math.random()));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ret;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-定义i自己的注解"><a href="#3-定义i自己的注解" class="headerlink" title="3.定义i自己的注解"></a>3.定义i自己的注解</h4><ul>
+<li>注解的英文名字叫annotation。是给类，方法以及成员变量增加元数据(matedata)的方式.换言之,就是描述这些元素的,和注释不同的是,这些描述会被Java编译器处理而非跳过</li>
+<li>最常见的两个注解可能是Override(覆盖)和Deprecated(过时)</li>
+<li>注解只是一种metadata传递渠道，本身没有实现功能</li>
+<li>注解背后具体的功能，还要用代码读取注解，然后根据注解来实现功能，所以每个注解的具体功能要分别学习</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys.learnannotation;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.ElementType;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Retention;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.RetentionPolicy;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Target;</span><br><span class="line"></span><br><span class="line"><span class="comment">//TODO 注解可以被用在那些元素上</span></span><br><span class="line"><span class="meta">@Target(ElementType.METHOD)</span></span><br><span class="line"><span class="comment">//TODO 注解可以被留存到那些阶段</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="comment">//TODO 以上的两个注解是每个元素都必须要有的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//TODO 定义一个自己的注解,需要@interfae,实际上这个接口会继承Annotation接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> PrimaryProperty &#123;</span><br><span class="line">    <span class="comment">// TODO 注解支持的类型有基本数据类型,Class,String,枚举,其他枚举,以上类型的数组</span></span><br><span class="line">    <span class="comment">// TODO 可以指定缺省值</span></span><br><span class="line">    <span class="function">String <span class="title">defaultValue</span><span class="params">()</span> <span class="keyword">default</span> &quot;N/A&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Class <span class="title">targetClass</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">abc</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    String[] defaultValues();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//TODO 注解类型的缺省值</span></span><br><span class="line">    <span class="function">Override <span class="title">is</span><span class="params">()</span> <span class="keyword">default</span> @Override</span>;</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用注解</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys.learnannotation;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestUseAnnotation</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Object abc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// TODO 给annotation里的属性赋值的方式</span></span><br><span class="line">    <span class="meta">@Deprecated</span></span><br><span class="line">    <span class="meta">@PrimaryProperty(defaultValue = &quot;test&quot;,targetClass = TestUseAnnotation.class,</span></span><br><span class="line"><span class="meta">    abc = 9,defaultValues = &#123;&quot;aaa&quot;,&quot;bbb&quot;&#125;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>获取注解内容</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys.learnannotation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.Annotation;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadAnnotationAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException </span>&#123;</span><br><span class="line">        Class clazz = TestUseAnnotation.class;</span><br><span class="line">        Method method = clazz.getMethod(<span class="string">&quot;test&quot;</span>);</span><br><span class="line">        <span class="keyword">for</span> (Annotation annotation : method.getAnnotations()) &#123;</span><br><span class="line">            System.out.println(annotation.annotationType());</span><br><span class="line">        &#125;</span><br><span class="line">        PrimaryProperty primaryProperty = method.getAnnotation(PrimaryProperty.class);</span><br><span class="line">        System.out.println(primaryProperty.abc());</span><br><span class="line">        System.out.println(primaryProperty.defaultValue());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-lambda的理解和使用（上）"><a href="#4-lambda的理解和使用（上）" class="headerlink" title="4.lambda的理解和使用（上）"></a>4.lambda的理解和使用（上）</h4><ul>
+<li>lambda 是函数式编程。很多语言中函数(方法)是一等公民, 无需依附于任何其他元素即可存在,并可以作为参数和返回值,而java只有类是一等公民,方法必须依附于某个类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IterateListLambdaAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; myList = addElementsToList(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="comment">//        for (String str: myList) &#123;</span></span><br><span class="line"><span class="comment">//            System.out.println(str);</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        String outside = <span class="string">&quot;outside string&quot;</span>;</span><br><span class="line">        <span class="comment">// TODO 匿名内部类版</span></span><br><span class="line"><span class="comment">//        myList.forEach(new Consumer&lt;String&gt;() &#123;</span></span><br><span class="line"><span class="comment">//            @Override</span></span><br><span class="line"><span class="comment">//            public void accept(String s) &#123;</span></span><br><span class="line"><span class="comment">//                processString(outside+s);</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line">        <span class="comment">// TODO lambda的表达式必须能符合接口中定义的抽象方法，从参数到返回值，到异常都必须匹配</span></span><br><span class="line">        <span class="comment">// TODO lambda 完整版(参数) -&gt; 代码块</span></span><br><span class="line">        <span class="comment">// TODO lambda　可以有返回值，使用return就可以</span></span><br><span class="line">        <span class="comment">// TODO lambda 可以使用外部数据，和内部匿名类一样的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        myList.forEach((s) -&gt; &#123;</span></span><br><span class="line"><span class="comment">//            processString(outside+s);</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO lambda 单参数,代码单行简化版</span></span><br><span class="line">        myList.forEach(s-&gt;processString(outside + s));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO lambda 如果不适用外部变量,还有方法引用终极简化版</span></span><br><span class="line"><span class="comment">//        myList.forEach(IterateListLambdaAppMain::processString);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO lambda 方法引用终极简化版,不是静态方法,用引用也可以</span></span><br><span class="line">        IterateListLambdaAppMain inst = <span class="keyword">new</span> IterateListLambdaAppMain();</span><br><span class="line">        myList.forEach(inst::processStringInst);</span><br><span class="line">        <span class="comment">// TODO lambda 也允许指定一个参数类型里的一个方法作为方法的引用</span></span><br><span class="line">        myList.forEach(String::toUpperCase);</span><br><span class="line">        myList.forEach(s-&gt;processString(s));</span><br><span class="line"></span><br><span class="line">        Map&lt;String,String&gt; myMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        myMap.put(<span class="string">&quot;k1&quot;</span>,<span class="string">&quot;v1&quot;</span>);</span><br><span class="line">        myMap.put(<span class="string">&quot;k2&quot;</span>,<span class="string">&quot;v2&quot;</span>);</span><br><span class="line">        myMap.put(<span class="string">&quot;k3&quot;</span>,<span class="string">&quot;v3&quot;</span>);</span><br><span class="line">        <span class="comment">// TODO 两个参数也没问题,把参数用括号括起来,用都好分开</span></span><br><span class="line">        myMap.forEach((k,v) -&gt; processTwoStrings(k,v));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">addElementsToList</span><span class="params">(List&lt;String&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i= <span class="number">0</span>;i&lt; <span class="number">22</span>;i++) &#123;</span><br><span class="line">            list.add(<span class="string">&quot;str&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">processString</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">processStringInst</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">processTwoStrings</span><span class="params">(String str1,String str2)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;s1=&quot;</span> + str1+<span class="string">&quot;, s2=&quot;</span>+str2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-lambdda的理解和使用-下"><a href="#5-lambdda的理解和使用-下" class="headerlink" title="5.lambdda的理解和使用(下)"></a>5.lambdda的理解和使用(下)</h4><ul>
+<li>lambda相当于是Java通过后台操作帮我们生成一个类来实现接口,并调用我们提供的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IterateListLambdaAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; myList = addElementsToList(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line"><span class="comment">//        for (String str: myList) &#123;</span></span><br><span class="line"><span class="comment">//            System.out.println(str);</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">        String outside = <span class="string">&quot;outside string&quot;</span>;</span><br><span class="line">        <span class="comment">// TODO 匿名内部类版</span></span><br><span class="line"><span class="comment">//        myList.forEach(new Consumer&lt;String&gt;() &#123;</span></span><br><span class="line"><span class="comment">//            @Override</span></span><br><span class="line"><span class="comment">//            public void accept(String s) &#123;</span></span><br><span class="line"><span class="comment">//                processString(outside+s);</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line">        <span class="comment">// TODO lambda的表达式必须能符合接口中定义的抽象方法，从参数到返回值，到异常都必须匹配</span></span><br><span class="line">        <span class="comment">// TODO lambda 完整版(参数) -&gt; 代码块</span></span><br><span class="line">        <span class="comment">// TODO lambda　可以有返回值，使用return就可以</span></span><br><span class="line">        <span class="comment">// TODO lambda 可以使用外部数据，和内部匿名类一样的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//        myList.forEach((s) -&gt; &#123;</span></span><br><span class="line"><span class="comment">//            processString(outside+s);</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO lambda 单参数,代码单行简化版</span></span><br><span class="line">        myList.forEach(s-&gt;processString(outside + s));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO lambda 如果不适用外部变量,还有方法引用终极简化版</span></span><br><span class="line"><span class="comment">//        myList.forEach(IterateListLambdaAppMain::processString);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO lambda 方法引用终极简化版,不是静态方法,用引用也可以</span></span><br><span class="line">        IterateListLambdaAppMain inst = <span class="keyword">new</span> IterateListLambdaAppMain();</span><br><span class="line">        myList.forEach(inst::processStringInst);</span><br><span class="line">        <span class="comment">// TODO lambda 也允许指定一个参数类型里的一个方法作为方法的引用</span></span><br><span class="line">        myList.forEach(String::toUpperCase);</span><br><span class="line">        myList.forEach(s-&gt;processString(s));</span><br><span class="line"></span><br><span class="line">        Map&lt;String,String&gt; myMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        myMap.put(<span class="string">&quot;k1&quot;</span>,<span class="string">&quot;v1&quot;</span>);</span><br><span class="line">        myMap.put(<span class="string">&quot;k2&quot;</span>,<span class="string">&quot;v2&quot;</span>);</span><br><span class="line">        myMap.put(<span class="string">&quot;k3&quot;</span>,<span class="string">&quot;v3&quot;</span>);</span><br><span class="line">        <span class="comment">// TODO 两个参数也没问题,把参数用括号括起来,用都好分开</span></span><br><span class="line">        myMap.forEach((k,v) -&gt; processTwoStrings(k,v));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">addElementsToList</span><span class="params">(List&lt;String&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i= <span class="number">0</span>;i&lt; <span class="number">22</span>;i++) &#123;</span><br><span class="line">            list.add(<span class="string">&quot;str&quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">processString</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">processStringInst</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        System.out.println(str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">processTwoStrings</span><span class="params">(String str1,String str2)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;s1=&quot;</span> + str1+<span class="string">&quot;, s2=&quot;</span>+str2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>异常的发生</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IterateListLambdaWhereAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; myList= addElementsToList(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">        <span class="comment">// TODO action.accept 就直接跳到了我们的放啊发，其实中间Java一顿后台操作帮我们生成了一个匿名类</span></span><br><span class="line">        <span class="comment">// TODO 并调用我们提供的方法</span></span><br><span class="line">        myList.forEach(IterateListLambdaWhereAppMain::processString);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;String&gt; <span class="title">addElementsToList</span><span class="params">(List&lt;String&gt; list)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            list.add(<span class="string">&quot;str&quot;</span> + (i % <span class="number">5</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">processString</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>UseStream</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> com.geekboys.IterateListLambdaAppMain.addElementsToList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseStreamAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; myList = addElementsToList(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">        System.out.println(<span class="string">&quot;----lambda的奥义----&quot;</span>);</span><br><span class="line">        <span class="comment">// TODO lambda的奥义是使用lambda一个接着一个处理,不要停,知道业务结束</span></span><br><span class="line">        <span class="comment">// TODO 理性来说,lambda结构对计算优化是友好的,感性来说,这种方式会产生美</span></span><br><span class="line">        myList.stream().filter(s-&gt;s.length() &gt; <span class="number">4</span>).map(String::toUpperCase).forEach(System.out::println);</span><br><span class="line">        <span class="comment">// TODO 当然也可以使用collector让数据重新生成一个List</span></span><br><span class="line">        System.out.println(<span class="string">&quot;----使用collector----&quot;</span>);</span><br><span class="line">        List&lt;String&gt; longgerStrList = myList.stream().filter(s-&gt;s.length() &gt; <span class="number">4</span>)</span><br><span class="line">                .map(String::toUpperCase).collect(Collectors.toList());</span><br><span class="line">        longgerStrList.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>理解lambda的精髓:让代码脱离类的束缚,自由的飞翔,这样就可以把代码传递给数据提供方,而不是只能把数据给代码,通过这种方法,达到链式处理数据</li>
+</ul>
+<h4 id="6-基本类型的自动装箱与拆箱"><a href="#6-基本类型的自动装箱与拆箱" class="headerlink" title="6.基本类型的自动装箱与拆箱"></a>6.基本类型的自动装箱与拆箱</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WrapperClassesForNumberPrimaryTypesAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO 从java第一个版本开始,java就为每种基本数据类型提供了封装的类,以便可以将其作为类而非基本数据类型使用</span></span><br><span class="line">        <span class="comment">// TODO 比如List Map这些类,都是操作的Object,无法操作基本数据类型</span></span><br><span class="line">        <span class="comment">// TODO 和数字相关的基本数据类型对应的类依次是:Byte Short Integer Long Float Double</span></span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">99</span>;</span><br><span class="line">        <span class="comment">// TODO 可以使用数字创建一个Integer类,下面的方法在别的数字类中也都类似</span></span><br><span class="line">        Integer i1 = <span class="keyword">new</span> Integer(a);</span><br><span class="line">        Integer i2 = <span class="keyword">new</span> Integer(<span class="string">&quot;789&quot;</span>);</span><br><span class="line">        <span class="keyword">int</span> b = Integer.valueOf(a);</span><br><span class="line">        <span class="keyword">int</span> c = Integer.parseInt(<span class="string">&quot;999&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;----自动封箱拆箱----&quot;</span>);</span><br><span class="line">        <span class="comment">// TODO java提供了自动为每种基本数据类型和其封装类之间的转换功能</span></span><br><span class="line">        <span class="comment">// TODO 从基本数据类型到封装类 叫自动封箱auto boxing,反之叫自动拆箱auto unboxing</span></span><br><span class="line">        Integer ab = <span class="number">987</span>;</span><br><span class="line">        <span class="keyword">int</span> cd = ab;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO 自动封箱为Integer,作为Map中的key</span></span><br><span class="line">        Map&lt;Integer,String&gt; int2Str = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        int2Str.put(<span class="number">1</span>,<span class="string">&quot;壹&quot;</span>);</span><br><span class="line">        int2Str.put(<span class="number">2</span>,<span class="string">&quot;二&quot;</span>);</span><br><span class="line">        int2Str.put(<span class="number">3</span>,<span class="string">&quot;叁&quot;</span>);</span><br><span class="line">        System.out.println(int2Str.get(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// TODO 自动拆箱为int</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> key: int2Str.keySet()) &#123;</span><br><span class="line">            System.out.println(key);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;-----有用的方法-----&quot;</span>);</span><br><span class="line">        System.out.println(Integer.toBinaryString(<span class="number">1024</span>));</span><br><span class="line">        System.out.println(Integer.toOctalString(<span class="number">1024</span>));</span><br><span class="line">        System.out.println(Integer.toHexString(<span class="number">1024</span>));</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----num类-----&quot;</span>);</span><br><span class="line">        Number num = <span class="number">9</span>;</span><br><span class="line">        num = <span class="keyword">new</span> Integer(<span class="number">12345</span>);</span><br><span class="line">        Number numD = <span class="keyword">new</span> Double(<span class="number">12.34</span>);</span><br><span class="line">        <span class="comment">// TODO 使用Number类可以方便的进行数字类型的转换</span></span><br><span class="line">        <span class="comment">// TODO 当然所有的类都继承了Number的这些转换方法</span></span><br><span class="line">        System.out.println(<span class="string">&quot;使用number将double转为long:&quot;</span>+ numD.longValue());</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;----自动拆箱可能为NPE----&quot;</span>);</span><br><span class="line">        int2Str.put(<span class="keyword">null</span>,<span class="string">&quot;无&quot;</span>);</span><br><span class="line">        System.out.println(int2Str.get(<span class="keyword">null</span>));</span><br><span class="line">        <span class="comment">// TODO 自动拆箱为int,并给key赋值,但是key为null,是无法转为int的, 注意:null不是0</span></span><br><span class="line">        <span class="comment">// TODO 其实自动拆箱,后面是java帮我们自动调用了对应的方法,这里就是inValue()这个方法</span></span><br><span class="line">        <span class="comment">// TODO 所以放引用为null时自动拆箱,相当于是调用null的方法,所以这个时候发生npe</span></span><br><span class="line">        <span class="comment">// TODO 对于其他封装类型的自动拆转箱,也是一样的</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> key: int2Str.keySet()</span><br><span class="line">             ) &#123;</span><br><span class="line">            System.out.println(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>字符中的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WrapperClassForCharAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO char对应的类为Character,里面有很多isXX方法比较实用</span></span><br><span class="line">        System.out.println(Character.isDigit(<span class="string">&#x27;A&#x27;</span>));</span><br><span class="line">        System.out.println(Character.isDigit(<span class="string">&#x27;字&#x27;</span>));</span><br><span class="line">        System.out.println(Character.isDigit(<span class="string">&#x27;0&#x27;</span>));</span><br><span class="line">        System.out.println(Character.isDigit(<span class="string">&#x27;6&#x27;</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Boolean</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WrapperClassForBooleanAppMain</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// TODO boolean对应的类为Boolean,布尔值只有两个值,所以Boolean类直接提供了这两个值的静态变量</span></span><br><span class="line">        System.out.println(<span class="string">&quot;----静态变量-------&quot;</span>);</span><br><span class="line">        System.out.println(Boolean.TRUE);</span><br><span class="line">        System.out.println(Boolean.FALSE);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;------valueOf-----&quot;</span>);</span><br><span class="line">        <span class="comment">// TODO 只有不分大小写的true才是true,剩下的都是false</span></span><br><span class="line">        System.out.println(Boolean.valueOf(<span class="string">&quot;true&quot;</span>));</span><br><span class="line">        System.out.println(Boolean.valueOf(<span class="string">&quot;false&quot;</span>));</span><br><span class="line">        System.out.println(Boolean.valueOf(<span class="string">&quot;TRue&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java中的文件类"><a href="#Java中的文件类" class="headerlink" title="Java中的文件类"></a>Java中的文件类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.geekboys;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CreateDirAndFileAppMain</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String ROOT = <span class="string">&quot;.&quot;</span> + File.separator;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        File dir = createDirs();</span><br><span class="line">        File newDir = renameDir(dir);</span><br><span class="line">        <span class="keyword">if</span> (newDir == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        String fileName = createFiles(newDir);</span><br><span class="line">        deleteFiles(newDir,fileName);</span><br><span class="line">        deleteDir(newDir);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> File <span class="title">createDirs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; pathList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;请输入文件名,如果为空格则结束&quot;</span>);</span><br><span class="line">            String path = scanner.nextLine();</span><br><span class="line">            <span class="keyword">if</span> (path.isBlank()) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            pathList.add(path);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> createDir(pathList.toArray(<span class="keyword">new</span> String[<span class="number">0</span>]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> File <span class="title">createDir</span><span class="params">(String... restPaths)</span> </span>&#123;</span><br><span class="line">        String rest = joinRestDir(restPaths);</span><br><span class="line">        System.out.println(<span class="string">&quot;将在&quot;</span>+ROOT+<span class="string">&quot;下创建&quot;</span>+rest);</span><br><span class="line">        File dir = <span class="keyword">new</span> File(ROOT,rest);</span><br><span class="line">        <span class="keyword">if</span> (dir.exists() &amp;&amp; dir.isDirectory()) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;文件夹已经存在&quot;</span>+dir.toString());</span><br><span class="line">            <span class="keyword">return</span> dir;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">boolean</span> createSuccess = dir.mkdirs();</span><br><span class="line">            <span class="keyword">if</span> (createSuccess) &#123;</span><br><span class="line">                <span class="keyword">return</span> dir;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;无法在&quot;</span>+ROOT+<span class="string">&quot;下创建&quot;</span>+rest);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">joinRestDir</span><span class="params">(String... restPaths)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Arrays.stream(restPaths).map(String::trim).collect(Collectors.joining(File.separator));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> File <span class="title">renameDir</span><span class="params">(File dir)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入新的文件夹名字:&quot;</span>);</span><br><span class="line">        String newDirName = scanner.nextLine().trim();</span><br><span class="line"></span><br><span class="line">        File newDir = <span class="keyword">new</span> File(dir.getParent(),newDirName);</span><br><span class="line">        <span class="keyword">boolean</span> renameSuccess = dir.renameTo(newDir);</span><br><span class="line">        <span class="keyword">if</span> (renameSuccess) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;改名为&quot;</span>+newDirName+<span class="string">&quot;成功&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;改名为&quot;</span>+ newDirName+<span class="string">&quot;失败&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newDir;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">createFiles</span><span class="params">(File newDir)</span> <span class="keyword">throws</span> IOException  </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入文件名前缀:&quot;</span>);</span><br><span class="line">        String fileName = scanner.nextLine().trim();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i= <span class="number">0</span>;i &lt; <span class="number">20</span>;i++) &#123;</span><br><span class="line">            File f = <span class="keyword">new</span> File(newDir,fileName + i +<span class="string">&quot;.txt&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;创建文件&quot;</span>+f.getName()+<span class="string">&quot;:&quot;</span>+f.createNewFile());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fileName;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">renameFiles</span><span class="params">(File newDir,String fileName)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;请输入新的文件名前缀:&quot;</span>);</span><br><span class="line">        String fileNameNew = scanner.next().trim();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i= <span class="number">0</span>;i&lt;<span class="number">20</span>;i++) &#123;</span><br><span class="line">            File f = <span class="keyword">new</span> File(newDir,fileName+i+<span class="string">&quot;.txt&quot;</span>);</span><br><span class="line">            File fn = <span class="keyword">new</span> File(newDir,fileNameNew+i+<span class="string">&quot;.txt&quot;</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;重命名文件&quot;</span>+f.getName()+<span class="string">&quot;:&quot;</span>+f.renameTo(fn));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> fileNameNew;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteFiles</span><span class="params">(File newDir,String fileNameNew)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;删除文件?&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> deleteFiles = scanner.nextBoolean();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (deleteFiles) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i= <span class="number">0</span>;i&lt; <span class="number">20</span>;i++) &#123;</span><br><span class="line">                File fn = <span class="keyword">new</span> File(newDir,fileNameNew+i+<span class="string">&quot;.txt&quot;</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;删除文件&quot;</span>+fn.delete());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteDir</span><span class="params">(File newDir)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;删除文件夹&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> deleteDir = scanner.nextBoolean();</span><br><span class="line">        <span class="keyword">if</span> (deleteDir) &#123;</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;删除文件夹&quot;</span> + newDir.delete());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持是我最大的动力！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/w.png" alt=" 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/z.jpg" alt=" 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    geekboys
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.geekboys.cn/2021/09/25/%E6%9E%81%E5%AE%A2java12/" title="极客java12">https://www.geekboys.cn/2021/09/25/%E6%9E%81%E5%AE%A2java12/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/12/%E6%9E%81%E5%AE%A2java11/" rel="next" title="极客java11">
+                <i class="fa fa-chevron-left"></i> 极客java11
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/aut.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/geekboyss" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Iterator%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.</span> <span class="nav-text">1.Iterator接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Map%EF%BC%9Akey%E5%92%8Cvalue%E7%9A%84%E6%98%A0%E5%B0%84"><span class="nav-number">2.</span> <span class="nav-text">2.Map：key和value的映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%9A%E4%B9%89i%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B3%A8%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">3.定义i自己的注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-lambda%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%8A%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">4.lambda的理解和使用（上）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-lambdda%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E4%BD%BF%E7%94%A8-%E4%B8%8B"><span class="nav-number">5.</span> <span class="nav-text">5.lambdda的理解和使用(下)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1"><span class="nav-number">6.</span> <span class="nav-text">6.基本类型的自动装箱与拆箱</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E7%B1%BB"><span class="nav-number">7.</span> <span class="nav-text">Java中的文件类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">geekboys</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.geekboys.cn/2021/09/25/%E6%9E%81%E5%AE%A2java12/</loc>
+    <lastmod>2021-09-25</lastmod>
+  </url>
+  <url>
     <loc>https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java02/</loc>
     <lastmod>2021-09-12</lastmod>
   </url>
@@ -38,10 +42,6 @@
   </url>
   <url>
     <loc>https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java11/</loc>
-    <lastmod>2021-09-12</lastmod>
-  </url>
-  <url>
-    <loc>https://www.geekboys.cn/2021/09/12/%E6%9E%81%E5%AE%A2java12/</loc>
     <lastmod>2021-09-12</lastmod>
   </url>
   <url>
